@@ -14,10 +14,14 @@
     <dependencies>
         <dependency>
             <groupId>com.dk</groupId>
-            <artifactId>dk-club-application-controller</artifactId>
+            <artifactId>dk-club-application</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.dk</groupId>
+            <artifactId>dk-club-infra</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
