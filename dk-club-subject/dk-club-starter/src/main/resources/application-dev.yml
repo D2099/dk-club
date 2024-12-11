@@ -25,3 +25,10 @@ spring:
         wall:
           enabled: true
 
+# 集成SwaggerUI配置
+springdoc:
+  swagger-ui:
+    path: /swagger-ui-custom.html
+    operations-sorter: method
+    #custom path for api docs
+    url: /smart-doc.json

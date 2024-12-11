@@ -1,0 +1,11 @@
+{
+  "outPath": "./src/main/resources/static/接口文档",
+  "serverUrl": "http://localhost:9099",
+  "isStrict": false,
+  "allInOne": true,
+  "coverOld": true,
+  "style":"xt256",
+  "createDebugPage": true,
+  "md5EncryptedHtmlName": false,
+  "projectName": "DK-CLUB接口"
+}

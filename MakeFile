@@ -1,0 +1,6 @@
+# 注意：window环境下先安装MinGW，idea中Makefile Support插件
+# Makefile 命令开头必须为tab键
+
+# 生成spring-boot-web模块的文档
+dk-club-application-controller@html-doc:
+	mvn smart-doc:html -Dfile.encoding=UTF-8 -pl :dk-club-application-controller -am
