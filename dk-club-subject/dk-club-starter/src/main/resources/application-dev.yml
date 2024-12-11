@@ -1,2 +1,27 @@
 server:
   port: 9099
+spring:
+  datasource:
+    username: root
+    password: P$gJX&FU8kBDT%ux6Ucw
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://61.171.114.201:3306/dk_club?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 20
+      min-idle: 20
+      max-active: 100
+      max-wait: 60000
+      stat-vie-servlet:
+        enabled: true
+        url-pattern: /druid/**
+        login-username: admin
+        login-password: 123456
+      filter:
+        stat:
+          enabled: true
+          slow-sql-millis: 2000
+          log-slow-sqk: true
+        wall:
+          enabled: true
+
