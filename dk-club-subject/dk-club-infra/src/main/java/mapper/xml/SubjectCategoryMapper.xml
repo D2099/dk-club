@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dk.subject.infra.basic.mapper.SubjectCategoryMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.dk.subject.infra.basic.entity.SubjectCategory">
+        <id column="id" property="id" />
+        <result column="category_name" property="categoryName" />
+        <result column="category_type" property="categoryType" />
+        <result column="image_url" property="imageUrl" />
+        <result column="parent_id" property="parentId" />
+        <result column="created_by" property="createdBy" />
+        <result column="created_time" property="createdTime" />
+        <result column="update_by" property="updateBy" />
+        <result column="update_time" property="updateTime" />
+        <result column="del_flag" property="delFlag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, category_name, category_type, image_url, parent_id, created_by, created_time, update_by, update_time, del_flag
+    </sql>
+
+</mapper>
