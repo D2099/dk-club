@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;
 import java.util.List;
 import java.util.Arrays;
+
 /**
  * ${table.comment!} 服务实现类
  * @author ${author}
@@ -32,30 +33,31 @@ public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.m
     }
 
     @Override
-    public List<${table.entityName}> getAll${table.entityName}(){
+    public List<${table.entityName}> getAll${table.entityName}() {
         return ${table.entityName?uncap_first}Mapper.selectList(null);
     }
 
     @Override
-    public void add( ${table.entityName} ${table.entityName?uncap_first}) {
+    public void add(${table.entityName} ${table.entityName?uncap_first}) {
         ${table.entityName?uncap_first}Mapper.insert(${table.entityName?uncap_first});
-    }
-    @Override
-    public int modify( ${table.entityName} ${table.entityName?uncap_first}) {
-        //乐观锁更新
-        ${table.entityName} current${table.entityName}= ${table.entityName?uncap_first}Mapper.selectById(${table.entityName?uncap_first}.getId());
-        ${table.entityName?uncap_first}.setVersion(current${table.entityName}.getVersion());
-        return  ${table.entityName?uncap_first}Mapper.updateById(${table.entityName?uncap_first});
     }
 
     @Override
-    public void remove( String ids) {
-        if(StringUtils.isNotEmpty(ids)){
-           String[] array = ids.split(",");
-           if (!CollectionUtils.isEmpty(Arrays.asList(array))) {
-               ${table.entityName?uncap_first}Mapper.deleteBatchIds(Arrays.asList(array));
-           }
-       }
+    public int modify(${table.entityName} ${table.entityName?uncap_first}) {
+        // 乐观锁更新
+        ${table.entityName} current${table.entityName} = ${table.entityName?uncap_first}Mapper.selectById(${table.entityName?uncap_first}.getId());
+        ${table.entityName?uncap_first}.setVersion(current${table.entityName}.getVersion());
+        return ${table.entityName?uncap_first}Mapper.updateById(${table.entityName?uncap_first});
+    }
+
+    @Override
+    public void remove(String ids) {
+        if (StringUtils.isNotEmpty(ids)) {
+            String[] array = ids.split(",");
+            if (!CollectionUtils.isEmpty(Arrays.asList(array))) {
+                ${table.entityName?uncap_first}Mapper.deleteBatchIds(Arrays.asList(array));
+            }
+        }
 
     }
 

@@ -18,10 +18,12 @@ import org.springframework.stereotype.Controller;
 <#if superControllerClassPackage??>
 import ${superControllerClassPackage};
 </#if>
+
 /**
-* @author ${author}
-* @since ${date}
-*/
+ * ${table.comment!} 接口控制器
+ * @author ${author}
+ * @since ${date}
+ */
 <#if restControllerStyle>
 @RestController
 <#else>
@@ -40,44 +42,62 @@ public class ${table.controllerName} {
     @Autowired
     private ${table.serviceName} ${table.serviceName?uncap_first};
 
-
+    /**
+     * 通过主键ID查询一个${table.comment!}
+     * @param id 主键ID
+     */
     @GetMapping("/selectOne")
 <#--    @RequiresPermissions("sys:${table.entityName?uncap_first}:list")-->
-    @ApiOperation("${table.entityName}查询单个")
-    public ${table.entityName} get${table.entityName}(@RequestParam("id") Integer id){
-     ${table.entityName} ${table.entityName?uncap_first}One = ${table.entityName?uncap_first}Service.get${table.entityName}( id);
-     return  ${table.entityName?uncap_first}One;
-   }
+<#--    @ApiOperation("${table.entityName}查询单个")-->
+    public ${table.entityName} get${table.entityName}(@RequestParam("id") Integer id) {
+        ${table.entityName} ${table.entityName?uncap_first}One = ${table.entityName?uncap_first}Service.get${table.entityName}(id);
+        return ${table.entityName?uncap_first}One;
+    }
 
+    /**
+     * 查询全部${table.comment!}
+     */
     @GetMapping("/listAll")
 <#--    @RequiresPermissions("sys:${table.entityName?uncap_first}:list")-->
-    @ApiOperation("${table.entityName}查询全部")
-    public List<${table.entityName}> getAll${table.entityName}(){
+<#--    @ApiOperation("${table.entityName}查询全部")-->
+    public List<${table.entityName}> getAll${table.entityName}() {
         List<${table.entityName}> ${table.entityName?uncap_first}List = ${table.entityName?uncap_first}Service.getAll${table.entityName}();
-        return  ${table.entityName?uncap_first}List;
+        return ${table.entityName?uncap_first}List;
     }
 
+    /**
+     * 新增${table.comment!}
+     * @param ${table.entityName?uncap_first} ${package.Entity}.${entity}
+     */
     @PostMapping("/add")
 <#--    @RequiresPermissions("sys:${table.entityName?uncap_first}:add")-->
-    @ApiOperation("${table.entityName}新增")
+<#--    @ApiOperation("${table.entityName}新增")-->
     public Object add(@Valid @RequestBody ${table.entityName} ${table.entityName?uncap_first}) {
-        ${table.entityName?uncap_first}Service.add( ${table.entityName?uncap_first});
-        return  null;
+        ${table.entityName?uncap_first}Service.add(${table.entityName?uncap_first});
+        return null;
     }
 
+    /**
+     * 更新${table.comment!}
+     * @param  ${table.entityName?uncap_first} ${package.Entity}.${entity}
+     */
     @PutMapping("/update")
 <#--    @RequiresPermissions("sys:${table.entityName?uncap_first}:update")-->
-    @ApiOperation("${table.entityName}修改")
+<#--    @ApiOperation("${table.entityName}修改")-->
     public int update(@Valid @RequestBody ${table.entityName} ${table.entityName?uncap_first}) {
-        int num = ${table.entityName?uncap_first}Service.modify( ${table.entityName?uncap_first});
-        return  num;
+        int num = ${table.entityName?uncap_first}Service.modify(${table.entityName?uncap_first});
+        return num;
     }
 
+    /**
+     * 通过主键ID删除${table.comment!}
+     * @param ids 主键ID（可以多个英文逗号隔开）
+     */
     @DeleteMapping(value = "/delete/{ids}")
 <#--    @RequiresPermissions("sys:${table.entityName?uncap_first}:delete")-->
-    @ApiOperation("${table.entityName}删除(单个条目)")
+<#--    @ApiOperation("${table.entityName}删除(单个条目)")-->
     public Object remove(@NotBlank(message = "{required}") @PathVariable String ids) {
-         ${table.entityName?uncap_first}Service.remove(ids);
+        ${table.entityName?uncap_first}Service.remove(ids);
         return null;
     }
 }
