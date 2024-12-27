@@ -21,7 +21,7 @@
     <dependencies>
         <dependency>
             <groupId>com.dk</groupId>
-            <artifactId>dk-club-infra</artifactId>
+            <artifactId>dk-club-domain</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

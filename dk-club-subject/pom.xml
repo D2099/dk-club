@@ -29,6 +29,7 @@
         <!--springboot-->
         <spring-boot.version>3.3.5</spring-boot.version>
         <springdoc-ui.version>1.8.0</springdoc-ui.version>
+        <springdoc-ui.version>1.8.0</springdoc-ui.version>
     </properties>
 
     <dependencyManagement>
@@ -44,10 +45,6 @@
     </dependencyManagement>
 
     <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui -->
         <dependency>
             <groupId>org.springdoc</groupId>
