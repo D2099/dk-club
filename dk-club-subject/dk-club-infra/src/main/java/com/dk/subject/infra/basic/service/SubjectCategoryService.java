@@ -29,7 +29,7 @@ public interface SubjectCategoryService extends IService<SubjectCategory> {
      * @param subjectCategory 根据需要进行传值
      * @return
      */
-    void add(SubjectCategory subjectCategory);
+    void insert(SubjectCategory subjectCategory);
 
     /**
      * 题目分类修改

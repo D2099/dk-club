@@ -33,7 +33,7 @@ public class SubjectCategoryServiceImpl extends ServiceImpl<SubjectCategoryMappe
     }
 
     @Override
-    public void add(SubjectCategory subjectCategory) {
+    public void insert(SubjectCategory subjectCategory) {
         subjectCategoryMapper.insert(subjectCategory);
     }
 
