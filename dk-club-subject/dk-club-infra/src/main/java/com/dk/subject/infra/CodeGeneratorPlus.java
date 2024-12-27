@@ -23,6 +23,7 @@ public class CodeGeneratorPlus {
         System.setProperty("logging.level.root", "DEBUG");
         String projectPath = System.getProperty("user.dir"); //获取当前项目路径
         String relativePaths = "/dk-club-subject/dk-club-infra"; // 相对路径
+        String mapperXmlPackagePath = "/com/dk/subject/infra/basic/mapper/xml";
 
         FastAutoGenerator.create("jdbc:mysql://61.171.114.201:3306/dk_club?useUnicode=true&characterEncoding=utf-8&useSSL=true&allowMultiQueries=true",
                         "root",
@@ -59,7 +60,10 @@ public class CodeGeneratorPlus {
                             .serviceImpl("service.impl") // serviceImpl包名
                             .mapper("mapper") // mapper包名
                             .xml("mapper.xml")
-                            .pathInfo(Collections.singletonMap(OutputFile.xml, projectPath + relativePaths + "/src/main/java/mapper/xml")).build();
+                            .pathInfo(Collections.singletonMap(
+                                    OutputFile.xml,
+                                    projectPath + relativePaths + "/src/main/java" + mapperXmlPackagePath)
+                            ).build();
                 })
 
                 // 策略配置
