@@ -1,6 +1,6 @@
 package com.dk.subject.infra.basic.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -21,6 +21,7 @@ public class SubjectCategory implements Serializable {
     /**
      * 主键
      */
+    @TableId(type = IdType.ASSIGN_ID)
     private Long id;
     /**
      * 分类名称
@@ -41,18 +42,22 @@ public class SubjectCategory implements Serializable {
     /**
      * 创建人
      */
-    private String createdBy;
+    @TableField(fill = FieldFill.INSERT)
+    private Long createdBy;
     /**
      * 创建时间
      */
+    @TableField(fill = FieldFill.INSERT)
     private Date createdTime;
     /**
      * 更新人
      */
-    private String updateBy;
+    @TableField(fill = FieldFill.UPDATE)
+    private Long updateBy;
     /**
      * 更新时间
      */
+    @TableField(fill = FieldFill.UPDATE)
     private Date updateTime;
     /**
      * 是否删除 0: 未删除 1: 已删除
