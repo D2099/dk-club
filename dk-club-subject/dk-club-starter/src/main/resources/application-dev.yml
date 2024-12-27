@@ -3,7 +3,7 @@ server:
 spring:
   datasource:
     username: root
-    password: P$gJX&FU8kBDT%ux6Ucw
+    password: TX/qndB/hB2XpD/haCdMFowkFM0vs25U0ESVU/rbu1TxN1ltZKZxspGiDpxB7B/L+PoJZ5lNkZuh/+VvbOAWZw==
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://61.171.114.201:3306/dk_club?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
     type: com.alibaba.druid.pool.DruidDataSource
@@ -24,6 +24,10 @@ spring:
           log-slow-sqk: true
         wall:
           enabled: true
+        config:
+          enabled: true
+      connection-properties: config.decrypt=true;config.decrypt.key=${spring.datasource.publicKey};
+    publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAIQIlwoq6zIItPQUg7p8whPJ6dwG/QehyYP+CuLch5VcZmW0OrcswW4JhTMnBIo9SMXEmRVuh8C1oiFFEuZVdF0CAwEAAQ==
 
 # 集成SwaggerUI配置
 springdoc:
