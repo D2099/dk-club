@@ -2,10 +2,10 @@ package com.dk.subject.application.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.dk.subject.application.convert.SubjectCategoryDTOConverter;
-import com.dk.subject.application.entity.SubjectCategoryDTO;
+import com.dk.subject.application.dto.SubjectCategoryDTO;
 import com.dk.subject.common.entity.Result;
-import com.dk.subject.domain.entity.SubjectCategoryBO;
-import com.dk.subject.domain.service.SubjectCategoryBOService;
+import com.dk.subject.domain.bo.SubjectCategoryBO;
+import com.dk.subject.domain.service.SubjectCategoryDomainService;
 import com.dk.subject.infra.basic.entity.SubjectCategory;
 import com.dk.subject.infra.basic.service.SubjectCategoryService;
 import jakarta.annotation.Resource;
@@ -30,7 +30,7 @@ public class SubjectCategoryController {
     private SubjectCategoryService subjectCategoryService;
 
     @Resource
-    private SubjectCategoryBOService subjectCategoryBOService;
+    private SubjectCategoryDomainService subjectCategoryDomainService;
 
     /**
      * 通过主键ID查询一个题目分类
@@ -62,7 +62,7 @@ public class SubjectCategoryController {
                 log.info("SubjectCategoryController.add.subjectCategoryDTO:{}", JSONObject.toJSONString(subjectCategoryDTO));
             }
             SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConverter.INSTANCE.convertToSubjectCategoryBO(subjectCategoryDTO);
-            subjectCategoryBOService.add(subjectCategoryBO);
+            subjectCategoryDomainService.add(subjectCategoryBO);
             return Result.ok(Boolean.TRUE);
         } catch (Exception e) {
             log.error("新增题目分类失败~，原因：{}", e.getMessage());

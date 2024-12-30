@@ -1,4 +1,4 @@
-package com.dk.subject.application.entity;
+package com.dk.subject.application.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;

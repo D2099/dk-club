@@ -1,4 +1,4 @@
-package com.dk.subject.domain.entity;
+package com.dk.subject.domain.bo;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
