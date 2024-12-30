@@ -54,5 +54,6 @@ mybatis-plus:
 
 # MyBatis输出sql日志
 logging:
+  config: classpath:log4j2-spring.xml
   level:
     com.dk.subject.infra.basic.mapper: info

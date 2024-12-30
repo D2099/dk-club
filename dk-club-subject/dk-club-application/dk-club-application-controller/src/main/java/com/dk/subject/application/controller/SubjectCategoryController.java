@@ -1,5 +1,6 @@
 package com.dk.subject.application.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.dk.subject.application.convert.SubjectCategoryDTOConverter;
 import com.dk.subject.application.entity.SubjectCategoryDTO;
 import com.dk.subject.common.entity.Result;
@@ -57,6 +58,9 @@ public class SubjectCategoryController {
     @PostMapping("/add")
     public Result<Boolean> add(@Valid @RequestBody SubjectCategoryDTO subjectCategoryDTO) {
         try {
+            if (log.isInfoEnabled()) {
+                log.info("SubjectCategoryController.add.subjectCategoryDTO:{}", JSONObject.toJSONString(subjectCategoryDTO));
+            }
             SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConverter.INSTANCE.convertToSubjectCategoryBO(subjectCategoryDTO);
             subjectCategoryBOService.add(subjectCategoryBO);
             return Result.ok(Boolean.TRUE);
