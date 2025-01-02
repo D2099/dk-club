@@ -73,6 +73,16 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering> <!-- 开启 Maven 占位符替换 -->
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+            <!-- 添加自定义资源目录 -->
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>com/dk/subject/infra/basic/mapper/xml/**/*.xml</include>
+                </includes>
             </resource>
         </resources>
     </build>
