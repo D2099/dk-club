@@ -56,6 +56,11 @@ public class SubjectCategoryServiceImpl extends ServiceImpl<SubjectCategoryMappe
 
     }
 
+    @Override
+    public List<SubjectCategory> getPrimaryCategory(SubjectCategory subjectCategory) {
+        return subjectCategoryMapper.queryPrimaryCategory(subjectCategory);
+    }
+
 }
 
 

@@ -5,10 +5,14 @@ import com.dk.subject.domain.bo.SubjectCategoryBO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper
 public interface SubjectCategoryDTOConverter {
 
     SubjectCategoryDTOConverter INSTANCE = Mappers.getMapper(SubjectCategoryDTOConverter.class);
 
     SubjectCategoryBO convertToSubjectCategoryBO(SubjectCategoryDTO SubjectCategoryDTO);
+
+    List<SubjectCategoryDTO> convertToSubjectCategoryBOList(List<SubjectCategoryBO> SubjectCategoryDTOList);
 }

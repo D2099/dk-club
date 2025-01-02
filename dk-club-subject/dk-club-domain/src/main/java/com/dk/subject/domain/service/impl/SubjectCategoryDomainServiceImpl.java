@@ -10,6 +10,8 @@ import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Slf4j
 @Service
 public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainService {
@@ -24,5 +26,17 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
         }
         SubjectCategory subjectCategory = SubjectCategoryBOConverter.INSTANCE.convertToSubjectCategory(subjectCategoryBO);
         subjectCategoryService.insert(subjectCategory);
+    }
+
+    @Override
+    public List<SubjectCategoryBO> getPrimaryCategoryList() {
+        SubjectCategory subjectCategory = new SubjectCategory()
+                .setParentId(0L);
+        List<SubjectCategory> subjectCategoryList = subjectCategoryService.getPrimaryCategory(subjectCategory);
+        List<SubjectCategoryBO> boList = SubjectCategoryBOConverter.INSTANCE.convertToSubjectCategoryList(subjectCategoryList);
+        if (log.isInfoEnabled()) {
+            log.info("SubjectCategoryDomainServiceImpl.getPrimaryCategoryList.boList: {}", JSONObject.toJSONString(boList));
+        }
+        return boList;
     }
 }

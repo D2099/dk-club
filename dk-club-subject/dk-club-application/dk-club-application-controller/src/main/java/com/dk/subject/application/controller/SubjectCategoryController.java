@@ -9,11 +9,12 @@ import com.dk.subject.domain.service.SubjectCategoryDomainService;
 import com.dk.subject.infra.basic.entity.SubjectCategory;
 import com.dk.subject.infra.basic.service.SubjectCategoryService;
 import jakarta.annotation.Resource;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
+
 import java.util.List;
 
 /**
@@ -49,6 +50,21 @@ public class SubjectCategoryController {
     public List<SubjectCategory> getAllSubjectCategory() {
         List<SubjectCategory> subjectCategoryList = subjectCategoryService.getAllSubjectCategory();
         return subjectCategoryList;
+    }
+
+    /**
+     * 查询全部题目分类
+     */
+    @GetMapping("/getPrimaryCategoryList")
+    public Result<List<SubjectCategoryDTO>> getPrimaryCategoryList() {
+        try {
+            List<SubjectCategoryBO> boList = subjectCategoryDomainService.getPrimaryCategoryList();
+            List<SubjectCategoryDTO> dtoList = SubjectCategoryDTOConverter.INSTANCE.convertToSubjectCategoryBOList(boList);
+            return Result.ok(dtoList);
+        } catch (Exception e) {
+            log.error("查询主要分类出错~，原因：{}", e.getMessage());
+            return Result.fail(null);
+        }
     }
 
     /**

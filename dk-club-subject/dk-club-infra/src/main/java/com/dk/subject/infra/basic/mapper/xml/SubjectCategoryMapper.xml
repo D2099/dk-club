@@ -21,4 +21,39 @@
         id, category_name, category_type, image_url, parent_id, created_by, created_time, update_by, update_time, del_flag
     </sql>
 
+    <sql id="queryCategoryGeneralConditions">
+        <if test="categoryName != null and categoryName != ''">
+            AND category_name LIKE CONCAT('%', #{categoryName}, '%')
+        </if>
+        <if test="categoryType != null">
+            AND category_type = #{categoryType}
+        </if>
+        <if test="imageUrl != null and imageUrl != ''">
+            AND image_url LIKE CONCAT('%', #{imageUrl}, '%')
+        </if>
+        <if test="parentId != null">
+            AND parent_id = #{parentId}
+        </if>
+        <if test="createdBy != null">
+            AND created_by = #{createdBy}
+        </if>
+        <if test="updateBy != null">
+            AND update_by = #{updateBy}
+        </if>
+        <if test="delFlag != null">
+            AND del_flag = #{delFlag}
+        </if>
+    </sql>
+
+    <select id="queryPrimaryCategory"
+            resultType="com.dk.subject.infra.basic.entity.SubjectCategory"
+            parameterType="com.dk.subject.infra.basic.entity.SubjectCategory">
+        SELECT
+            <include refid="Base_Column_List"/>
+        FROM
+            subject_category
+        <where>
+            <include refid="queryCategoryGeneralConditions"/>
+        </where>
+    </select>
 </mapper>
