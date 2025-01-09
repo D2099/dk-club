@@ -10,4 +10,6 @@ public interface SubjectCategoryDomainService {
     void add(SubjectCategoryBO subjectCategoryBO);
 
     List<SubjectCategoryBO> getPrimaryCategoryList();
+
+    List<SubjectCategoryBO> getCategoryListByPrimary(SubjectCategoryBO subjectCategoryBO);
 }

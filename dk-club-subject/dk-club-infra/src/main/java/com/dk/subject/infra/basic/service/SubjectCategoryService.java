@@ -46,6 +46,8 @@ public interface SubjectCategoryService extends IService<SubjectCategory> {
     void remove(String ids);
 
     List<SubjectCategory> getPrimaryCategory(SubjectCategory subjectCategory);
+
+    List<SubjectCategory> getCategoryListByPrimary(SubjectCategory subjectCategory);
 }
 
 

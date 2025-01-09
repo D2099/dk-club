@@ -68,6 +68,26 @@ public class SubjectCategoryController {
     }
 
     /**
+     * 更新题目分类
+     * @param  subjectCategory com.dk.subject.infra.basic.entity.SubjectCategory
+     */
+    @PutMapping("/update")
+    public int update(@Valid @RequestBody SubjectCategory subjectCategory) {
+        int num = subjectCategoryService.modify(subjectCategory);
+        return num;
+    }
+
+    /**
+     * 通过主键ID删除题目分类
+     * @param ids 主键ID（可以多个英文逗号隔开）
+     */
+    @DeleteMapping(value = "/delete/{ids}")
+    public Object remove(@NotBlank(message = "{required}") @PathVariable String ids) {
+        subjectCategoryService.remove(ids);
+        return null;
+    }
+
+    /**
      * 新增题目分类
      * @param subjectCategoryDTO com.dk.subject.application.entity.SubjectCategoryDTO
      */
@@ -87,22 +107,21 @@ public class SubjectCategoryController {
     }
 
     /**
-     * 更新题目分类
-     * @param  subjectCategory com.dk.subject.infra.basic.entity.SubjectCategory
+     * 按主ID查询大类下分类列表
+     * @param subjectCategoryDTO com.dk.subject.application.entity.SubjectCategoryDTO
      */
-    @PutMapping("/update")
-    public int update(@Valid @RequestBody SubjectCategory subjectCategory) {
-        int num = subjectCategoryService.modify(subjectCategory);
-        return num;
-    }
-
-    /**
-     * 通过主键ID删除题目分类
-     * @param ids 主键ID（可以多个英文逗号隔开）
-     */
-    @DeleteMapping(value = "/delete/{ids}")
-    public Object remove(@NotBlank(message = "{required}") @PathVariable String ids) {
-        subjectCategoryService.remove(ids);
-        return null;
+    @PostMapping("/getCategoryListByPrimary")
+    public Result<List<SubjectCategoryBO>> getCategoryListByPrimary(@Valid @RequestBody SubjectCategoryDTO subjectCategoryDTO) {
+        try {
+            if (log.isInfoEnabled()) {
+                log.info("SubjectCategoryController.getCategoryListByPrimary.subjectCategoryDTO:{}", JSONObject.toJSONString(subjectCategoryDTO));
+            }
+            SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConverter.INSTANCE.convertToSubjectCategoryBO(subjectCategoryDTO);
+            List<SubjectCategoryBO> result = subjectCategoryDomainService.getCategoryListByPrimary(subjectCategoryBO);
+            return Result.ok(result);
+        } catch (Exception e) {
+            log.error("新增题目分类失败~，原因：{}", e.getMessage());
+            return Result.fail(null);
+        }
     }
 }

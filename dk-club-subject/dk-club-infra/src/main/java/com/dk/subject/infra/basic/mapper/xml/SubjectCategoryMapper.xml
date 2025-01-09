@@ -22,6 +22,9 @@
     </sql>
 
     <sql id="queryCategoryGeneralConditions">
+        <if test="id != null and id != ''">
+            AND id = #{id}
+        </if>
         <if test="categoryName != null and categoryName != ''">
             AND category_name LIKE CONCAT('%', #{categoryName}, '%')
         </if>
@@ -49,6 +52,18 @@
             resultType="com.dk.subject.infra.basic.entity.SubjectCategory"
             parameterType="com.dk.subject.infra.basic.entity.SubjectCategory">
         SELECT
+            <include refid="Base_Column_List"/>
+        FROM
+            subject_category
+        <where>
+            <include refid="queryCategoryGeneralConditions"/>
+        </where>
+    </select>
+
+    <select id="queryCategoryListByPrimary"
+            resultType="com.dk.subject.infra.basic.entity.SubjectCategory"
+            parameterType="com.dk.subject.infra.basic.entity.SubjectCategory">
+       SELECT
             <include refid="Base_Column_List"/>
         FROM
             subject_category

@@ -39,4 +39,15 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
         }
         return boList;
     }
+
+    @Override
+    public List<SubjectCategoryBO> getCategoryListByPrimary(SubjectCategoryBO subjectCategoryBO) {
+        SubjectCategory subjectCategory = SubjectCategoryBOConverter.INSTANCE.convertToSubjectCategory(subjectCategoryBO);
+        List<SubjectCategory> subjectCategoryList = subjectCategoryService.getCategoryListByPrimary(subjectCategory);
+        if (log.isInfoEnabled()) {
+            log.info("SubjectCategoryDomainServiceImpl.getCategoryListByPrimary.subjectCategoryList:{}", JSONObject.toJSONString(subjectCategoryList));
+        }
+        List<SubjectCategoryBO> boList = SubjectCategoryBOConverter.INSTANCE.convertToSubjectCategoryList(subjectCategoryList);
+        return boList;
+    }
 }

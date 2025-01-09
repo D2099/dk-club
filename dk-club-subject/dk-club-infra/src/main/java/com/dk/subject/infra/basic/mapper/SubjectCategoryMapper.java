@@ -14,4 +14,6 @@ import java.util.List;
 @Mapper
 public interface SubjectCategoryMapper extends BaseMapper<SubjectCategory> {
     List<SubjectCategory> queryPrimaryCategory(SubjectCategory subjectCategory);
+
+    List<SubjectCategory> queryCategoryListByPrimary(SubjectCategory subjectCategory);
 }
