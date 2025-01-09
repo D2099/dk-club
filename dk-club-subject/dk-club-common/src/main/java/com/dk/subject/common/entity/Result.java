@@ -58,4 +58,14 @@ public class Result<T> {
         result.setTimestamp(System.currentTimeMillis());
         return result;
     }
+
+    public static<T> Result<T> fail(String message) {
+        Result<T> result = new Result<>();
+        result.setCode(ResultCodeEnum.FAIL.getCode());
+        result.setMessage(message);
+        result.setData(null);
+        result.setSuccess(false);
+        result.setTimestamp(System.currentTimeMillis());
+        return result;
+    }
 }
