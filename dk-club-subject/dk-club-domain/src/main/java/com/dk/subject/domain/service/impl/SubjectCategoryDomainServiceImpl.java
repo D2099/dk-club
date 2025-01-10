@@ -1,6 +1,7 @@
 package com.dk.subject.domain.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.dk.subject.common.enums.DeleteFlagEnum;
 import com.dk.subject.domain.convert.SubjectCategoryDomainConverter;
 import com.dk.subject.domain.bo.SubjectCategoryBO;
 import com.dk.subject.domain.service.SubjectCategoryDomainService;
@@ -56,6 +57,16 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
         SubjectCategory subjectCategory = SubjectCategoryDomainConverter.INSTANCE.convertToSubjectCategory(subjectCategoryBO);
         if (log.isInfoEnabled()) {
             log.info("SubjectCategoryDomainServiceImpl.update.subjectCategory:{}", JSONObject.toJSONString(subjectCategory));
+        }
+        return subjectCategoryService.updateById(subjectCategory);
+    }
+
+    @Override
+    public Boolean remove(SubjectCategoryBO subjectCategoryBO) {
+        SubjectCategory subjectCategory = SubjectCategoryDomainConverter.INSTANCE.convertToSubjectCategory(subjectCategoryBO);
+        subjectCategory.setDelFlag(DeleteFlagEnum.DELETE.getCode());
+        if (log.isInfoEnabled()) {
+            log.info("SubjectCategoryDomainServiceImpl.remove.subjectCategory:{}", JSONObject.toJSONString(subjectCategory));
         }
         return subjectCategoryService.updateById(subjectCategory);
     }

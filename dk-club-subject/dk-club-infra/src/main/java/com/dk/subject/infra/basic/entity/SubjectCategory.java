@@ -62,5 +62,5 @@ public class SubjectCategory implements Serializable {
     /**
      * 是否删除 0: 未删除 1: 已删除
      */
-    private Boolean delFlag;
+    private Integer delFlag;
 }

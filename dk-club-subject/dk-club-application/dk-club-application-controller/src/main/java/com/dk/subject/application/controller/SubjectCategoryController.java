@@ -89,12 +89,16 @@ public class SubjectCategoryController {
 
     /**
      * 通过主键ID删除题目分类
-     * @param ids 主键ID（可以多个英文逗号隔开）
+     * @param subjectCategoryDTO com.dk.subject.application.entity.SubjectCategoryDTO
      */
-    @DeleteMapping(value = "/delete/{ids}")
-    public Object remove(@NotBlank(message = "{required}") @PathVariable String ids) {
-        subjectCategoryService.remove(ids);
-        return null;
+    @PostMapping(value = "/delete")
+    public Result<Boolean> remove(@RequestBody SubjectCategoryDTO subjectCategoryDTO) {
+        if (log.isInfoEnabled()) {
+            log.info("SubjectCategoryController.remove.subjectCategoryDTO:{}", JSONObject.toJSONString(subjectCategoryDTO));
+        }
+        SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConverter.INSTANCE.convertToSubjectCategoryBO(subjectCategoryDTO);
+        Boolean result = subjectCategoryDomainService.remove(subjectCategoryBO);
+        return Result.ok(result);
     }
 
     /**
