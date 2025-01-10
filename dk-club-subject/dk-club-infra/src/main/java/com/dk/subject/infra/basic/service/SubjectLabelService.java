@@ -26,10 +26,11 @@ public interface SubjectLabelService extends IService<SubjectLabel> {
 
     /**
      * 题目标签表新增
+     *
      * @param subjectLabel 根据需要进行传值
      * @return
      */
-    void add(SubjectLabel subjectLabel);
+    int add(SubjectLabel subjectLabel);
 
     /**
      * 题目标签表修改

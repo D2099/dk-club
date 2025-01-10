@@ -1,8 +1,15 @@
 package com.dk.subject.application.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.dk.subject.application.convert.SubjectLabelDTOConverter;
+import com.dk.subject.application.dto.SubjectLabelDTO;
 import com.dk.subject.common.entity.Result;
+import com.dk.subject.domain.bo.SubjectLabelBO;
+import com.dk.subject.domain.service.SubjectLabelDomainService;
 import com.dk.subject.infra.basic.entity.SubjectLabel;
 import com.dk.subject.infra.basic.service.SubjectLabelService;
+import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
@@ -14,12 +21,16 @@ import java.util.List;
  * @author DEMOKING
  * @since 2025-01-10
  */
+@Slf4j
 @RestController
 @RequestMapping("/subject-label")
 public class SubjectLabelController {
 
-    @Autowired
+    @Resource
     private SubjectLabelService subjectLabelService;
+
+    @Resource
+    private SubjectLabelDomainService subjectLabelDomainService;
 
     /**
      * 通过主键ID查询一个题目标签表
@@ -42,12 +53,21 @@ public class SubjectLabelController {
 
     /**
      * 新增题目标签表
-     * @param subjectLabel com.dk.subject.infra.basic.entity.SubjectLabel
+     * @param subjectLabelDTO com.dk.subject.application.dto.SubjectLabelDTO
      */
     @PostMapping("/add")
-    public Result<Boolean> add(@Valid @RequestBody SubjectLabel subjectLabel) {
-
-        return null;
+    public Result<Boolean> add(@Valid @RequestBody SubjectLabelDTO subjectLabelDTO) {
+        try {
+            if (log.isInfoEnabled()) {
+                log.info("SubjectLabelController.add.subjectLabelDTO:{}", JSONObject.toJSONString(subjectLabelDTO));
+            }
+            SubjectLabelBO subjectLabelBO = SubjectLabelDTOConverter.INSTANCE.convertToSubjectLabelBO(subjectLabelDTO);
+            Boolean result = subjectLabelDomainService.add(subjectLabelBO);
+            return Result.ok(result);
+        } catch (Exception e) {
+            log.error("新增题目标签失败~，原因：{}", e.getMessage());
+            return Result.fail("新增题目标签失败~");
+        }
     }
 
     /**

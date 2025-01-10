@@ -4,8 +4,8 @@ import com.dk.subject.infra.basic.entity.SubjectLabel;
 import com.dk.subject.infra.basic.mapper.SubjectLabelMapper;
 import com.dk.subject.infra.basic.service.SubjectLabelService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;
 import java.util.List;
@@ -19,7 +19,7 @@ import java.util.Arrays;
 @Service
 public class SubjectLabelServiceImpl extends ServiceImpl<SubjectLabelMapper, SubjectLabel> implements SubjectLabelService {
 
-    @Autowired
+    @Resource
     SubjectLabelMapper subjectLabelMapper;
 
     @Override
@@ -33,15 +33,15 @@ public class SubjectLabelServiceImpl extends ServiceImpl<SubjectLabelMapper, Sub
     }
 
     @Override
-    public void add(SubjectLabel subjectLabel) {
-        subjectLabelMapper.insert(subjectLabel);
+    public int add(SubjectLabel subjectLabel) {
+        return subjectLabelMapper.insert(subjectLabel);
     }
 
     @Override
     public int modify(SubjectLabel subjectLabel) {
         // 乐观锁更新
         SubjectLabel currentSubjectLabel = subjectLabelMapper.selectById(subjectLabel.getId());
-        subjectLabel.setVersion(currentSubjectLabel.getVersion());
+        // subjectLabel.setVersion(currentSubjectLabel.getVersion());
         return subjectLabelMapper.updateById(subjectLabel);
     }
 
