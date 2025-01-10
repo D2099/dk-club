@@ -74,11 +74,11 @@ public class SubjectCategoryController {
     @PostMapping("/update")
     public Result<Boolean> update(@Valid @RequestBody SubjectCategoryDTO subjectCategoryDTO) {
         try {
+            if (log.isInfoEnabled()) {
+                log.info("SubjectCategoryController.update.subjectCategoryDTO:{}", JSONObject.toJSONString(subjectCategoryDTO));
+            }
             SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConverter.INSTANCE
                     .convertToSubjectCategoryBO(subjectCategoryDTO);
-            if (log.isInfoEnabled()) {
-                log.info("SubjectCategoryController.update.subjectCategoryBO:{}", JSONObject.toJSONString(subjectCategoryBO));
-            }
             Boolean result = subjectCategoryDomainService.update(subjectCategoryBO);
             return Result.ok(result);
         } catch (Exception e) {
