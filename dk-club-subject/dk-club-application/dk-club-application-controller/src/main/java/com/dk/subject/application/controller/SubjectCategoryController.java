@@ -10,7 +10,6 @@ import com.dk.subject.infra.basic.entity.SubjectCategory;
 import com.dk.subject.infra.basic.service.SubjectCategoryService;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

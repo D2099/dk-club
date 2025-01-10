@@ -1,6 +1,7 @@
 package com.dk.subject.domain.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.dk.subject.common.enums.CategoryTypeEnum;
 import com.dk.subject.common.enums.DeleteFlagEnum;
 import com.dk.subject.domain.convert.SubjectCategoryDomainConverter;
 import com.dk.subject.domain.bo.SubjectCategoryBO;
@@ -33,7 +34,9 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
     @Override
     public List<SubjectCategoryBO> getPrimaryCategoryList() {
         SubjectCategory subjectCategory = new SubjectCategory()
-                .setParentId(0L);
+                .setParentId(0L)
+                .setCategoryType(CategoryTypeEnum.PRIMARY_CATEGORY.getCode())
+                .setDelFlag(DeleteFlagEnum.UN_DELETE.getCode());
         List<SubjectCategory> subjectCategoryList = subjectCategoryService.getPrimaryCategory(subjectCategory);
         List<SubjectCategoryBO> boList = SubjectCategoryDomainConverter.INSTANCE.convertToSubjectCategoryList(subjectCategoryList);
         if (log.isInfoEnabled()) {
@@ -45,6 +48,8 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
     @Override
     public List<SubjectCategoryBO> getCategoryListByPrimary(SubjectCategoryBO subjectCategoryBO) {
         SubjectCategory subjectCategory = SubjectCategoryDomainConverter.INSTANCE.convertToSubjectCategory(subjectCategoryBO);
+        subjectCategory.setCategoryType(CategoryTypeEnum.BIG_CATEGORY.getCode());
+        subjectCategory.setDelFlag(DeleteFlagEnum.UN_DELETE.getCode());
         List<SubjectCategory> subjectCategoryList = subjectCategoryService.getCategoryListByPrimary(subjectCategory);
         if (log.isInfoEnabled()) {
             log.info("SubjectCategoryDomainServiceImpl.getCategoryListByPrimary.subjectCategoryList:{}", JSONObject.toJSONString(subjectCategoryList));
