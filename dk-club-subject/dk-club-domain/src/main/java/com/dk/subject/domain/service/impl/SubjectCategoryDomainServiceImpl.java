@@ -1,7 +1,7 @@
 package com.dk.subject.domain.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.dk.subject.domain.convert.SubjectCategoryBOConverter;
+import com.dk.subject.domain.convert.SubjectCategoryDomainConverter;
 import com.dk.subject.domain.bo.SubjectCategoryBO;
 import com.dk.subject.domain.service.SubjectCategoryDomainService;
 import com.dk.subject.infra.basic.entity.SubjectCategory;
@@ -24,7 +24,7 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
         if (log.isInfoEnabled()) {
             log.info("SubjectCategoryBOServiceImpl.add.subjectCategoryBO : {}", JSONObject.toJSONString(subjectCategoryBO));
         }
-        SubjectCategory subjectCategory = SubjectCategoryBOConverter.INSTANCE.convertToSubjectCategory(subjectCategoryBO);
+        SubjectCategory subjectCategory = SubjectCategoryDomainConverter.INSTANCE.convertToSubjectCategory(subjectCategoryBO);
         subjectCategoryService.insert(subjectCategory);
     }
 
@@ -33,7 +33,7 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
         SubjectCategory subjectCategory = new SubjectCategory()
                 .setParentId(0L);
         List<SubjectCategory> subjectCategoryList = subjectCategoryService.getPrimaryCategory(subjectCategory);
-        List<SubjectCategoryBO> boList = SubjectCategoryBOConverter.INSTANCE.convertToSubjectCategoryList(subjectCategoryList);
+        List<SubjectCategoryBO> boList = SubjectCategoryDomainConverter.INSTANCE.convertToSubjectCategoryList(subjectCategoryList);
         if (log.isInfoEnabled()) {
             log.info("SubjectCategoryDomainServiceImpl.getPrimaryCategoryList.boList: {}", JSONObject.toJSONString(boList));
         }
@@ -42,12 +42,21 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
 
     @Override
     public List<SubjectCategoryBO> getCategoryListByPrimary(SubjectCategoryBO subjectCategoryBO) {
-        SubjectCategory subjectCategory = SubjectCategoryBOConverter.INSTANCE.convertToSubjectCategory(subjectCategoryBO);
+        SubjectCategory subjectCategory = SubjectCategoryDomainConverter.INSTANCE.convertToSubjectCategory(subjectCategoryBO);
         List<SubjectCategory> subjectCategoryList = subjectCategoryService.getCategoryListByPrimary(subjectCategory);
         if (log.isInfoEnabled()) {
             log.info("SubjectCategoryDomainServiceImpl.getCategoryListByPrimary.subjectCategoryList:{}", JSONObject.toJSONString(subjectCategoryList));
         }
-        List<SubjectCategoryBO> boList = SubjectCategoryBOConverter.INSTANCE.convertToSubjectCategoryList(subjectCategoryList);
+        List<SubjectCategoryBO> boList = SubjectCategoryDomainConverter.INSTANCE.convertToSubjectCategoryList(subjectCategoryList);
         return boList;
+    }
+
+    @Override
+    public Boolean update(SubjectCategoryBO subjectCategoryBO) {
+        SubjectCategory subjectCategory = SubjectCategoryDomainConverter.INSTANCE.convertToSubjectCategory(subjectCategoryBO);
+        if (log.isInfoEnabled()) {
+            log.info("SubjectCategoryDomainServiceImpl.update.subjectCategory:{}", JSONObject.toJSONString(subjectCategory));
+        }
+        return subjectCategoryService.updateById(subjectCategory);
     }
 }

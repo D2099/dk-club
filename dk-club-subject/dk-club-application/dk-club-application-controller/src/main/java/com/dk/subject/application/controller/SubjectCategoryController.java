@@ -69,12 +69,22 @@ public class SubjectCategoryController {
 
     /**
      * 更新题目分类
-     * @param  subjectCategory com.dk.subject.infra.basic.entity.SubjectCategory
+     * @param  subjectCategoryDTO com.dk.subject.application.dto.SubjectCategoryDTO
      */
-    @PutMapping("/update")
-    public int update(@Valid @RequestBody SubjectCategory subjectCategory) {
-        int num = subjectCategoryService.modify(subjectCategory);
-        return num;
+    @PostMapping("/update")
+    public Result<Boolean> update(@Valid @RequestBody SubjectCategoryDTO subjectCategoryDTO) {
+        try {
+            SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConverter.INSTANCE
+                    .convertToSubjectCategoryBO(subjectCategoryDTO);
+            if (log.isInfoEnabled()) {
+                log.info("SubjectCategoryController.update.subjectCategoryBO:{}", JSONObject.toJSONString(subjectCategoryBO));
+            }
+            Boolean result = subjectCategoryDomainService.update(subjectCategoryBO);
+            return Result.ok(result);
+        } catch (Exception e) {
+            log.error("更新失败~，原因：{}", e.getMessage());
+            return Result.fail("更新失败~");
+        }
     }
 
     /**

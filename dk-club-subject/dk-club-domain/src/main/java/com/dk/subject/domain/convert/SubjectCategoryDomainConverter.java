@@ -8,9 +8,9 @@ import org.mapstruct.factory.Mappers;
 import java.util.List;
 
 @Mapper
-public interface SubjectCategoryBOConverter {
+public interface SubjectCategoryDomainConverter {
 
-    SubjectCategoryBOConverter INSTANCE = Mappers.getMapper(SubjectCategoryBOConverter.class);
+    SubjectCategoryDomainConverter INSTANCE = Mappers.getMapper(SubjectCategoryDomainConverter.class);
 
     SubjectCategory convertToSubjectCategory(SubjectCategoryBO subjectCategoryBO);
 

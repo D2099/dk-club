@@ -12,4 +12,6 @@ public interface SubjectCategoryDomainService {
     List<SubjectCategoryBO> getPrimaryCategoryList();
 
     List<SubjectCategoryBO> getCategoryListByPrimary(SubjectCategoryBO subjectCategoryBO);
+
+    Boolean update(SubjectCategoryBO subjectCategoryBO);
 }
