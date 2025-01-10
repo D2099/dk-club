@@ -22,13 +22,13 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
     private SubjectCategoryService subjectCategoryService;
 
     @Override
-    public void add(SubjectCategoryBO subjectCategoryBO) {
+    public Boolean add(SubjectCategoryBO subjectCategoryBO) {
         SubjectCategory subjectCategory = SubjectCategoryDomainConverter.INSTANCE.convertToSubjectCategory(subjectCategoryBO);
         subjectCategory.setDelFlag(DeleteFlagEnum.UN_DELETE.getCode());
         if (log.isInfoEnabled()) {
-            log.info("SubjectCategoryBOServiceImpl.add.subjectCategory : {}", JSONObject.toJSONString(subjectCategory));
+            log.info("SubjectCategoryBOServiceImpl.add.subjectCategory:{}", JSONObject.toJSONString(subjectCategory));
         }
-        subjectCategoryService.insert(subjectCategory);
+        return subjectCategoryService.save(subjectCategory);
     }
 
     @Override

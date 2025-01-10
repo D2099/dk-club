@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface SubjectCategoryDomainService {
 
-    void add(SubjectCategoryBO subjectCategoryBO);
+    Boolean add(SubjectCategoryBO subjectCategoryBO);
 
     List<SubjectCategoryBO> getPrimaryCategoryList();
 

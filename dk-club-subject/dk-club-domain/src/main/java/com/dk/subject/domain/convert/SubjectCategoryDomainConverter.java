@@ -7,6 +7,9 @@ import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
+/**
+ * 题目分类Domain转换类
+ */
 @Mapper
 public interface SubjectCategoryDomainConverter {
 

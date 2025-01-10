@@ -26,7 +26,7 @@ import java.util.List;
 @RequestMapping("/subject-category")
 public class SubjectCategoryController {
 
-    @Autowired
+    @Resource
     private SubjectCategoryService subjectCategoryService;
 
     @Resource
@@ -111,11 +111,11 @@ public class SubjectCategoryController {
                 log.info("SubjectCategoryController.add.subjectCategoryDTO:{}", JSONObject.toJSONString(subjectCategoryDTO));
             }
             SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConverter.INSTANCE.convertToSubjectCategoryBO(subjectCategoryDTO);
-            subjectCategoryDomainService.add(subjectCategoryBO);
-            return Result.ok(Boolean.TRUE);
+            Boolean result = subjectCategoryDomainService.add(subjectCategoryBO);
+            return Result.ok(result);
         } catch (Exception e) {
             log.error("新增题目分类失败~，原因：{}", e.getMessage());
-            return Result.fail(Boolean.FALSE);
+            return Result.fail("新增题目分类失败~");
         }
     }
 

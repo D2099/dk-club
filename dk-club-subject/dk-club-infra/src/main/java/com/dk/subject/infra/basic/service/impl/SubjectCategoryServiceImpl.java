@@ -4,6 +4,7 @@ import com.dk.subject.infra.basic.entity.SubjectCategory;
 import com.dk.subject.infra.basic.mapper.SubjectCategoryMapper;
 import com.dk.subject.infra.basic.service.SubjectCategoryService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.apache.commons.lang3.StringUtils;
@@ -19,7 +20,7 @@ import java.util.Arrays;
 @Service
 public class SubjectCategoryServiceImpl extends ServiceImpl<SubjectCategoryMapper, SubjectCategory> implements SubjectCategoryService {
 
-    @Autowired
+    @Resource
     SubjectCategoryMapper subjectCategoryMapper;
 
     @Override
