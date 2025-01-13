@@ -1,6 +1,7 @@
 package ${package.Entity};
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -23,6 +24,9 @@ public class ${entity} implements Serializable {
     /**
      * ${field.comment}
      */
+    </#if>
+    <#if field.propertyName?lower_case == "delflag">
+    @TableLogic
     </#if>
     private ${field.propertyType} ${field.propertyName};
 </#list>

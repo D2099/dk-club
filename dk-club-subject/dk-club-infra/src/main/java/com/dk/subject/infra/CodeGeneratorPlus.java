@@ -121,11 +121,12 @@ public class CodeGeneratorPlus {
                 })
                 .templateEngine(new FreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板
                 .templateConfig(builder -> {
-                    builder.controller("/templates/controller.java")
+                    builder
+                            .controller("/templates/controller.java")
                             .service("/templates/service.java")
                             .serviceImpl("/templates/serviceImpl.java")
                             .entity("/templates/entity.java")
-                            //.mapper()
+                            .xml("/templates/mapper.xml")
                             .build();
                 })
                 .execute(); // 执行
