@@ -73,12 +73,24 @@ public class SubjectLabelController {
 
     /**
      * 更新题目标签表
-     * @param  subjectLabel com.dk.subject.infra.basic.entity.SubjectLabel
+     * @param  subjectLabelDTO com.dk.subject.infra.basic.entity.SubjectLabel
      */
-    @PutMapping("/update")
-    public int update(@Valid @RequestBody SubjectLabel subjectLabel) {
-        int num = subjectLabelService.modify(subjectLabel);
-        return num;
+    @PostMapping("/update")
+    public Result<Boolean> update(@Valid @RequestBody SubjectLabelDTO subjectLabelDTO) {
+        try {
+            if (log.isInfoEnabled()) {
+                log.info("SubjectLabelController.update.subjectLabelDTO:{}", JSONObject.toJSONString(subjectLabelDTO));
+            }
+            // ====== 参数校验 ======
+            Preconditions.checkNotNull(subjectLabelDTO.getId(), "标签ID不能为空~");
+            // ====== 参数校验 ======
+            SubjectLabelBO subjectLabelBO = SubjectLabelDTOConverter.INSTANCE.convertToSubjectLabelBO(subjectLabelDTO);
+            Boolean result = subjectLabelDomainService.update(subjectLabelBO);
+            return Result.ok(result);
+        } catch (Exception e) {
+            log.error("更新题目标签失败~，原因：{}", e.getMessage());
+            return Result.fail(e.getMessage());
+        }
     }
 
     /**
@@ -89,7 +101,7 @@ public class SubjectLabelController {
     public Result<Boolean> remove(@Valid @RequestBody SubjectLabelDTO subjectLabelDTO) {
         try {
             if (log.isInfoEnabled()) {
-                log.info("SubjectLabelController.add.subjectLabelDTO:{}", JSONObject.toJSONString(subjectLabelDTO));
+                log.info("SubjectLabelController.remove.subjectLabelDTO:{}", JSONObject.toJSONString(subjectLabelDTO));
             }
             // ====== 参数校验 ======
             Preconditions.checkNotNull(subjectLabelDTO.getId(), "标签ID不能为空~");
@@ -99,7 +111,7 @@ public class SubjectLabelController {
             return Result.ok(result);
         } catch (Exception e) {
             log.error("移除题目标签失败~，原因：{}", e.getMessage());
-            return Result.fail("移除题目标签失败~");
+            return Result.fail(e.getMessage());
         }
     }
 }

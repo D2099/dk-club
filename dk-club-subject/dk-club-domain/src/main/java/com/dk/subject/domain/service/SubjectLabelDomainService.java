@@ -6,4 +6,6 @@ public interface SubjectLabelDomainService {
     Boolean add(SubjectLabelBO subjectLabelBO);
 
     Boolean delete(SubjectLabelBO subjectLabelBO);
+
+    Boolean update(SubjectLabelBO subjectLabelBO);
 }

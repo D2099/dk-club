@@ -1,5 +1,6 @@
 package com.dk.subject.infra.basic.entity;
 
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -49,5 +50,6 @@ public class SubjectLabel implements Serializable {
     /**
      * 是否删除 0: 未删除 1: 已删除
      */
+    @TableLogic
     private Integer delFlag;
 }

@@ -35,6 +35,15 @@ public class SubjectLabelDomainServiceImpl implements SubjectLabelDomainService 
         if (log.isInfoEnabled()) {
             log.info("SubjectLabelDomainServiceImpl.delete.subjectLabel:{}", JSONObject.toJSONString(subjectLabel));
         }
+        return SubjectLabelService.removeById(subjectLabel);
+    }
+
+    @Override
+    public Boolean update(SubjectLabelBO subjectLabelBO) {
+        SubjectLabel subjectLabel = SubjectLabelDomainConverter.INSTANCE.convertToSubjectLabel(subjectLabelBO);
+        if (log.isInfoEnabled()) {
+            log.info("SubjectLabelDomainServiceImpl.update.subjectLabel:{}", JSONObject.toJSONString(subjectLabel));
+        }
         return SubjectLabelService.updateById(subjectLabel);
     }
 }
