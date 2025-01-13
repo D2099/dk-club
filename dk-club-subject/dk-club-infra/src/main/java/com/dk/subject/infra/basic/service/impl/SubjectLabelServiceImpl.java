@@ -53,7 +53,6 @@ public class SubjectLabelServiceImpl extends ServiceImpl<SubjectLabelMapper, Sub
                 subjectLabelMapper.deleteBatchIds(Arrays.asList(array));
             }
         }
-
     }
 
 }

@@ -8,6 +8,7 @@ import com.dk.subject.domain.bo.SubjectLabelBO;
 import com.dk.subject.domain.service.SubjectLabelDomainService;
 import com.dk.subject.infra.basic.entity.SubjectLabel;
 import com.dk.subject.infra.basic.service.SubjectLabelService;
+import com.google.common.base.Preconditions;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,11 +83,23 @@ public class SubjectLabelController {
 
     /**
      * 通过主键ID删除题目标签表
-     * @param ids 主键ID（可以多个英文逗号隔开）
+     * @param subjectLabelDTO com.dk.subject.application.dto.SubjectLabelDTO
      */
-    @DeleteMapping(value = "/delete/{ids}")
-    public Object remove(@NotBlank(message = "{required}") @PathVariable String ids) {
-        subjectLabelService.remove(ids);
-        return null;
+    @PostMapping(value = "/delete")
+    public Result<Boolean> remove(@Valid @RequestBody SubjectLabelDTO subjectLabelDTO) {
+        try {
+            if (log.isInfoEnabled()) {
+                log.info("SubjectLabelController.add.subjectLabelDTO:{}", JSONObject.toJSONString(subjectLabelDTO));
+            }
+            // ====== 参数校验 ======
+            Preconditions.checkNotNull(subjectLabelDTO.getId(), "标签ID不能为空~");
+            // ====== 参数校验 ======
+            SubjectLabelBO subjectLabelBO = SubjectLabelDTOConverter.INSTANCE.convertToSubjectLabelBO(subjectLabelDTO);
+            Boolean result = subjectLabelDomainService.delete(subjectLabelBO);
+            return Result.ok(result);
+        } catch (Exception e) {
+            log.error("移除题目标签失败~，原因：{}", e.getMessage());
+            return Result.fail("移除题目标签失败~");
+        }
     }
 }
