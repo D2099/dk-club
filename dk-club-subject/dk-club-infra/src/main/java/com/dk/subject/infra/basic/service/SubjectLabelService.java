@@ -45,6 +45,13 @@ public interface SubjectLabelService extends IService<SubjectLabel> {
      * @return
      */
     void remove(String ids);
+
+    /**
+     * 按条件查询题目标签表数量
+     * @param subjectLabel
+     * @return
+     */
+    long count(SubjectLabel subjectLabel);
 }
 
 

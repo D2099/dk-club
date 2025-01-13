@@ -21,8 +21,9 @@
         id, category_name, category_type, image_url, parent_id, created_by, created_time, update_by, update_time, del_flag
     </sql>
 
+    <!-- 通用条件 -->
     <sql id="queryCategoryGeneralConditions">
-        <if test="id != null and id != ''">
+        <if test="id != null">
             AND id = #{id}
         </if>
         <if test="categoryName != null and categoryName != ''">

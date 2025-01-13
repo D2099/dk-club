@@ -14,9 +14,37 @@
         <result column="del_flag" property="delFlag" />
     </resultMap>
 
+    <!-- 通用条件 -->
+    <sql id="queryGeneralConditions">
+        <if test="id != null">
+            AND id = #{id}
+        </if>
+        <if test="labelName != null and labelName != ''">
+            AND label_name LIKE CONCAT('%', #{labelName}, '%')
+        </if>
+        <if test="sortNum != null">
+            AND sort_num = #{sortNum}
+        </if>
+        <if test="createdBy != null">
+            AND created_by = #{createdBy}
+        </if>
+        <if test="updateBy != null">
+            AND update_by = #{updateBy}
+        </if>
+        <if test="delFlag != null">
+            AND del_flag = #{delFlag}
+        </if>
+    </sql>
+
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, label_name, sort_num, created_by, created_time, update_by, update_time, del_flag
     </sql>
 
+    <select id="count" resultType="Long" parameterType="com.dk.subject.infra.basic.entity.SubjectLabel">
+        SELECT COUNT(`id`) FROM subject_label
+        <where>
+            <include refid="queryGeneralConditions"/>
+        </where>
+    </select>
 </mapper>
