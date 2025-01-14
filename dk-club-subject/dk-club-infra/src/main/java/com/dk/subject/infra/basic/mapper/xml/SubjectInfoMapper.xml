@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dk.subject.infra.basic.mapper.SubjectInfoMapper">
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.dk.subject.infra.basic.entity.SubjectInfo">
+                    <id column="id" property="id" />
+                    <result column="subject_name" property="subjectName" />
+                    <result column="subject_difficult" property="subjectDifficult" />
+                    <result column="settle_name" property="settleName" />
+                    <result column="subject_type" property="subjectType" />
+                    <result column="subject_score" property="subjectScore" />
+                    <result column="subject_parse" property="subjectParse" />
+                    <result column="created_by" property="createdBy" />
+                    <result column="created_time" property="createdTime" />
+                    <result column="update_by" property="updateBy" />
+                    <result column="update_time" property="updateTime" />
+                    <result column="del_flag" property="delFlag" />
+        </resultMap>
+
+        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+            id, subject_name, subject_difficult, settle_name, subject_type, subject_score, subject_parse, created_by, created_time, update_by, update_time, del_flag
+        </sql>
+
+
+    <!-- 通用条件查询 -->
+    <sql id="queryGeneralConditions">
+        <if test="id != null">
+            AND id = #{id}
+        </if>
+        <if test="subjectName != null and subjectName != ''">
+            AND subject_name LIKE CONCAT('%', #{subjectName}, '%')
+        </if>
+        <if test="subjectDifficult != null">
+            AND subject_difficult = #{subjectDifficult}
+        </if>
+        <if test="settleName != null and settleName != ''">
+            AND settle_name LIKE CONCAT('%', #{settleName}, '%')
+        </if>
+        <if test="subjectType != null">
+            AND subject_type = #{subjectType}
+        </if>
+        <if test="subjectScore != null">
+            AND subject_score = #{subjectScore}
+        </if>
+        <if test="subjectParse != null and subjectParse != ''">
+            AND subject_parse LIKE CONCAT('%', #{subjectParse}, '%')
+        </if>
+        <if test="createdBy != null">
+            AND created_by = #{createdBy}
+        </if>
+        <if test="createdTime != null">
+            AND created_time = #{createdTime}
+        </if>
+        <if test="updateBy != null">
+            AND update_by = #{updateBy}
+        </if>
+        <if test="updateTime != null">
+            AND update_time = #{updateTime}
+        </if>
+        <if test="delFlag != null">
+            AND del_flag = #{delFlag}
+        </if>
+    </sql>
+
+</mapper>
