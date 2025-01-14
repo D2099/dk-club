@@ -75,7 +75,7 @@ public class CodeGeneratorPlus {
 //                            .addTableSuffix("_db") // 增加过滤表后缀
 //                            .addFieldPrefix("t_") // 增加过滤字段前缀
 //                            .addFieldSuffix("_field") // 增加过滤字段后缀
-                           .addInclude("subject_brief") // 表匹配
+                           .addInclude("subject_judge") // 表匹配
 
                             // Entity 策略配置
                             .entityBuilder()
