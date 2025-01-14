@@ -38,7 +38,7 @@ public class SubjectLabelController {
      * @param id 主键ID
      */
     @GetMapping("/selectOne")
-    public SubjectLabel getSubjectLabel(@RequestParam("id") Integer id) {
+    public SubjectLabel getSubjectLabel(@RequestParam("id") Long id) {
         SubjectLabel subjectLabelOne = subjectLabelService.getSubjectLabel(id);
         return subjectLabelOne;
     }

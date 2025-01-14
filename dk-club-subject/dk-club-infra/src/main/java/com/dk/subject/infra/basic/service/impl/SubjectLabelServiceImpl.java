@@ -23,7 +23,7 @@ public class SubjectLabelServiceImpl extends ServiceImpl<SubjectLabelMapper, Sub
     SubjectLabelMapper subjectLabelMapper;
 
     @Override
-    public SubjectLabel getSubjectLabel(Integer id) {
+    public SubjectLabel getSubjectLabel(Long id) {
         return subjectLabelMapper.selectById(id);
     }
 

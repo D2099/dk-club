@@ -36,7 +36,7 @@ public class SubjectCategoryController {
      * @param id 主键ID
      */
     @GetMapping("/selectOne")
-    public SubjectCategory getSubjectCategory(@RequestParam("id") Integer id) {
+    public SubjectCategory getSubjectCategory(@RequestParam("id") Long id) {
         SubjectCategory subjectCategoryOne = subjectCategoryService.getSubjectCategory(id);
         return subjectCategoryOne;
     }

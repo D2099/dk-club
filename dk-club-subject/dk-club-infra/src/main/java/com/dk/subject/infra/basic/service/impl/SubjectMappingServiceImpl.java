@@ -23,7 +23,7 @@ public class SubjectMappingServiceImpl extends ServiceImpl<SubjectMappingMapper,
     SubjectMappingMapper subjectMappingMapper;
 
     @Override
-    public SubjectMapping getSubjectMapping(Integer id) {
+    public SubjectMapping getSubjectMapping(Long id) {
         return subjectMappingMapper.selectById(id);
     }
 

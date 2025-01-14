@@ -15,7 +15,7 @@ public interface SubjectMappingService extends IService<SubjectMapping> {
      * @param id 主键ID
      * @return
      */
-    SubjectMapping getSubjectMapping(Integer id);
+    SubjectMapping getSubjectMapping(Long id);
 
     /**
      * 题目分类关系表获取全部详情

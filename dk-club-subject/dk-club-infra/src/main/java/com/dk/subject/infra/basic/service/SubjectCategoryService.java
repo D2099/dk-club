@@ -15,7 +15,7 @@ public interface SubjectCategoryService extends IService<SubjectCategory> {
      * @param id 主键ID
      * @return
      */
-    SubjectCategory getSubjectCategory(Integer id);
+    SubjectCategory getSubjectCategory(Long id);
 
     /**
      * 题目分类获取全部详情

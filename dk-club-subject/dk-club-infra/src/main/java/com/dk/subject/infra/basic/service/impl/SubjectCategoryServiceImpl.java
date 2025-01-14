@@ -24,7 +24,7 @@ public class SubjectCategoryServiceImpl extends ServiceImpl<SubjectCategoryMappe
     SubjectCategoryMapper subjectCategoryMapper;
 
     @Override
-    public SubjectCategory getSubjectCategory(Integer id) {
+    public SubjectCategory getSubjectCategory(Long id) {
         return subjectCategoryMapper.selectById(id);
     }
 

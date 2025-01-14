@@ -1,4 +1,4 @@
-package com.dk.subject.infra.basic.controller;
+package com.dk.subject.application.controller;
 
 import com.dk.subject.infra.basic.entity.SubjectMapping;
 import com.dk.subject.infra.basic.service.SubjectMappingService;
@@ -25,7 +25,7 @@ public class SubjectMappingController {
      * @param id 主键ID
      */
     @GetMapping("/selectOne")
-    public SubjectMapping getSubjectMapping(@RequestParam("id") Integer id) {
+    public SubjectMapping getSubjectMapping(@RequestParam("id") Long id) {
         SubjectMapping subjectMappingOne = subjectMappingService.getSubjectMapping(id);
         return subjectMappingOne;
     }

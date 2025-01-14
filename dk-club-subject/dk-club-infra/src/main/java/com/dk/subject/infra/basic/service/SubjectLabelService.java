@@ -15,7 +15,7 @@ public interface SubjectLabelService extends IService<SubjectLabel> {
      * @param id 主键ID
      * @return
      */
-    SubjectLabel getSubjectLabel(Integer id);
+    SubjectLabel getSubjectLabel(Long id);
 
     /**
      * 题目标签表获取全部详情
