@@ -52,4 +52,12 @@
         </if>
     </sql>
 
+    <select id="queryLabelIdList" resultType="java.lang.Long"
+            parameterType="com.dk.subject.infra.basic.entity.SubjectMapping">
+        SELECT
+            DISTINCT label_id FROM subject_mapping
+        <where>
+            <include refid="queryGeneralConditions"/>
+        </where>
+    </select>
 </mapper>

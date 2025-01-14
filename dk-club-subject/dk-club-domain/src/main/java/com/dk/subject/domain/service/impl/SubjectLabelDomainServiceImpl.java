@@ -6,10 +6,14 @@ import com.dk.subject.domain.bo.SubjectLabelBO;
 import com.dk.subject.domain.convert.SubjectLabelDomainConverter;
 import com.dk.subject.domain.service.SubjectLabelDomainService;
 import com.dk.subject.infra.basic.entity.SubjectLabel;
+import com.dk.subject.infra.basic.entity.SubjectMapping;
 import com.dk.subject.infra.basic.service.SubjectLabelService;
+import com.dk.subject.infra.basic.service.SubjectMappingService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Slf4j
 @Service
@@ -17,6 +21,9 @@ public class SubjectLabelDomainServiceImpl implements SubjectLabelDomainService 
 
     @Resource
     private SubjectLabelService SubjectLabelService;
+
+    @Resource
+    private SubjectMappingService subjectMappingService;
 
     @Override
     public Boolean add(SubjectLabelBO subjectLabelBO) {
@@ -45,5 +52,20 @@ public class SubjectLabelDomainServiceImpl implements SubjectLabelDomainService 
             log.info("SubjectLabelDomainServiceImpl.update.subjectLabel:{}", JSONObject.toJSONString(subjectLabel));
         }
         return SubjectLabelService.updateById(subjectLabel);
+    }
+
+    @Override
+    public List<SubjectLabelBO> getLabelListByCategoryId(SubjectLabelBO subjectLabelBO) {
+        Long categoryId = subjectLabelBO.getCategoryId();
+        SubjectMapping subjectMapping = new SubjectMapping()
+                .setCategoryId(categoryId)
+                .setDelFlag(DeleteFlagEnum.UN_DELETE.getCode());
+        List<Long> labelIds = subjectMappingService.getLabelIdList(subjectMapping);
+        if (labelIds.isEmpty()) {
+            return List.of();
+        }
+        List<SubjectLabel> subjectLabelList = SubjectLabelService.getSubjectLabelList(labelIds);
+        List<SubjectLabelBO> subjectLabelBOList = SubjectLabelDomainConverter.INSTANCE.convertToSubjectLabelBO(subjectLabelList);
+        return subjectLabelBOList;
     }
 }

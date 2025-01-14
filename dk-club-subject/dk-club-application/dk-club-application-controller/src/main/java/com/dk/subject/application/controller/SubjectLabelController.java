@@ -114,4 +114,27 @@ public class SubjectLabelController {
             return Result.fail(e.getMessage());
         }
     }
+
+    /**
+     * 通过分类ID查询标签
+     * @param subjectLabelDTO com.dk.subject.application.dto.SubjectLabelDTO
+     */
+    @PostMapping(value = "/getLabelListByCategoryId")
+    public Result<List<SubjectLabelDTO>> getLabelListByCategoryId(@Valid @RequestBody SubjectLabelDTO subjectLabelDTO) {
+        try {
+            if (log.isInfoEnabled()) {
+                log.info("SubjectLabelController.getLabelListByCategoryId.subjectLabelDTO:{}", JSONObject.toJSONString(subjectLabelDTO));
+            }
+            // ====== 参数校验 ======
+            Preconditions.checkNotNull(subjectLabelDTO.getCategoryId(), "分类ID不能为空~");
+            // ====== 参数校验 ======
+            SubjectLabelBO subjectLabelBO = SubjectLabelDTOConverter.INSTANCE.convertToSubjectLabelBO(subjectLabelDTO);
+            List<SubjectLabelBO> subjectLabelBOList = subjectLabelDomainService.getLabelListByCategoryId(subjectLabelBO);
+            List<SubjectLabelDTO> resultDTOList = SubjectLabelDTOConverter.INSTANCE.convertToSubjectLabelDTOList(subjectLabelBOList);
+            return Result.ok(resultDTOList);
+        } catch (Exception e) {
+            log.error("查询题目标签失败~，原因：{}", e.getMessage());
+            return Result.fail(e.getMessage());
+        }
+    }
 }

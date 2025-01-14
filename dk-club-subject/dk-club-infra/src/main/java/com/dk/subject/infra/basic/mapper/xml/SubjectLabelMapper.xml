@@ -47,4 +47,19 @@
             <include refid="queryGeneralConditions"/>
         </where>
     </select>
+
+    <select id="querySubjectLabelList" parameterType="Long"
+            resultType="com.dk.subject.infra.basic.entity.SubjectLabel">
+        SELECT
+            <include refid="Base_Column_List"/>
+        FROM
+            subject_label
+        <where>
+            del_flag = 0
+            AND id IN
+            <foreach collection="labelIds" item="labelId" open="(" separator="," close=")">
+                #{labelId}
+            </foreach>
+        </where>
+    </select>
 </mapper>

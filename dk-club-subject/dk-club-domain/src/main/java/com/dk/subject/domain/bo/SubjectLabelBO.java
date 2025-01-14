@@ -29,6 +29,10 @@ public class SubjectLabelBO implements Serializable {
      */
     private Integer sortNum;
     /**
+     * 题目ID
+     */
+    private Long categoryId;
+    /**
      * 创建人
      */
     private Long createdBy;

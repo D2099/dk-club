@@ -44,6 +44,13 @@ public interface SubjectMappingService extends IService<SubjectMapping> {
      * @return
      */
     void remove(String ids);
+
+    /**
+     * 通过题目ID查询题目标签ID列表
+     * @param subjectMapping
+     * @return
+     */
+    List<Long> getLabelIdList(SubjectMapping subjectMapping);
 }
 
 

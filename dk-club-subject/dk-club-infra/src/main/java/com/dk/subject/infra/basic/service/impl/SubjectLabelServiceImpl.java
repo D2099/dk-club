@@ -60,6 +60,11 @@ public class SubjectLabelServiceImpl extends ServiceImpl<SubjectLabelMapper, Sub
         return subjectLabelMapper.count(subjectLabel);
     }
 
+    @Override
+    public List<SubjectLabel> getSubjectLabelList(List<Long> labelIds) {
+        return subjectLabelMapper.querySubjectLabelList(labelIds);
+    }
+
 }
 
 
