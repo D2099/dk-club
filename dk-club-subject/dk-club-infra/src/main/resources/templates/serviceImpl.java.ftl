@@ -28,7 +28,7 @@ public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.m
     ${table.entityName}Mapper ${table.entityName?uncap_first}Mapper;
 
     @Override
-    public ${table.entityName} get${table.entityName}(Integer id) {
+    public ${table.entityName} get${table.entityName}(Long id) {
         return ${table.entityName?uncap_first}Mapper.selectById(id);
     }
 

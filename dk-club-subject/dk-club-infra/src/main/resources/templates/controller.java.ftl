@@ -49,7 +49,7 @@ public class ${table.controllerName} {
     @GetMapping("/selectOne")
 <#--    @RequiresPermissions("sys:${table.entityName?uncap_first}:list")-->
 <#--    @ApiOperation("${table.entityName}查询单个")-->
-    public ${table.entityName} get${table.entityName}(@RequestParam("id") Integer id) {
+    public ${table.entityName} get${table.entityName}(@RequestParam("id") Long id) {
         ${table.entityName} ${table.entityName?uncap_first}One = ${table.entityName?uncap_first}Service.get${table.entityName}(id);
         return ${table.entityName?uncap_first}One;
     }

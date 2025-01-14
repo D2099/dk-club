@@ -18,7 +18,7 @@ public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
      * @param id 主键ID
      * @return
      */
-    ${table.entityName} get${table.entityName}(Integer id);
+    ${table.entityName} get${table.entityName}(Long id);
 
     /**
      * ${table.comment!}获取全部详情
