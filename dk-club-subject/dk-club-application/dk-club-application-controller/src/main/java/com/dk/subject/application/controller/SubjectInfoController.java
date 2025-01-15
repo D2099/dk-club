@@ -1,11 +1,19 @@
 package com.dk.subject.application.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.dk.subject.application.convert.SubjectInfoDTOConverter;
+import com.dk.subject.application.dto.SubjectInfoDTO;
+import com.dk.subject.common.entity.Result;
+import com.dk.subject.domain.bo.SubjectInfoBO;
+import com.dk.subject.domain.service.SubjectInfoDomainService;
 import com.dk.subject.infra.basic.entity.SubjectInfo;
 import com.dk.subject.infra.basic.service.SubjectInfoService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 /**
@@ -13,12 +21,16 @@ import java.util.List;
  * @author DEMOKING
  * @since 2025-01-14
  */
+@Slf4j
 @RestController
 @RequestMapping("/subject-info")
 public class SubjectInfoController {
 
-    @Autowired
+    @Resource
     private SubjectInfoService subjectInfoService;
+
+    @Resource
+    private SubjectInfoDomainService subjectInfoDomainService;
 
     /**
      * 通过主键ID查询一个题目信息表
@@ -40,13 +52,22 @@ public class SubjectInfoController {
     }
 
     /**
-     * 新增题目信息表
-     * @param subjectInfo com.dk.subject.infra.basic.entity.SubjectInfo
+     * 新增题目信息
+     * @param subjectInfoDTO com.dk.subject.application.dto.SubjectInfoDTO
      */
     @PostMapping("/add")
-    public Object add(@Valid @RequestBody SubjectInfo subjectInfo) {
-        subjectInfoService.add(subjectInfo);
-        return null;
+    public Result<Boolean> add(@Valid @RequestBody SubjectInfoDTO subjectInfoDTO) {
+        try {
+            if (log.isInfoEnabled()) {
+                log.info("SubjectInfoController.add.subjectInfoDTO:{}", JSONObject.toJSONString(subjectInfoDTO));
+            }
+            SubjectInfoBO subjectInfoBO = SubjectInfoDTOConverter.INSTANCE.convertToSubjectInfoBO(subjectInfoDTO);
+            Boolean result = subjectInfoDomainService.add(subjectInfoBO);
+            return Result.ok(result);
+        } catch (Exception e) {
+            log.error("新增题目信息失败~，原因：{}", e.getMessage());
+            return Result.fail(e.getMessage());
+        }
     }
 
     /**
