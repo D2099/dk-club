@@ -41,17 +41,20 @@ public class SubjectInfoDomainServiceImpl implements SubjectInfoDomainService {
         SubjectInfo subjectInfo = SubjectInfoDomainConverter.INSTANCE.convertToSubjectInfo(subjectInfoBO);
         boolean subjectInfoSaveResult = subjectInfoService.save(subjectInfo);
         if (!subjectInfoSaveResult) {
+            // TODO
             throw new RuntimeException("题目信息新增失败~");
         }
         subjectInfoBO.setId(subjectInfo.getId());
         SubjectTypeHandler subjectTypeHandler = subjectTypeHandlerFactory.getSubjectTypeHandler(subjectInfo.getSubjectType());
         boolean subjectTypeHandlerResult = subjectTypeHandler.add(subjectInfoBO);
         if (!subjectTypeHandlerResult) {
+            // TODO
             throw new RuntimeException("题目答案新增失败~");
         }
         List<SubjectMapping> subjectMappingList = getCategoryLabelMappingList(subjectInfoBO);
         boolean subjectMappingSaveBatchResult = subjectMappingService.saveBatch(subjectMappingList);
         if (!subjectMappingSaveBatchResult) {
+            // TODO
             throw new RuntimeException("题目分类标签关联失败~");
         }
         return true;
