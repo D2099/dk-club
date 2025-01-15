@@ -5,8 +5,8 @@ import ${package.Service}.${table.serviceName};
 <#--import io.swagger.annotations.ApiOperation;-->
 <#--import org.apache.shiro.authz.annotation.Logical;-->
 <#--import org.apache.shiro.authz.annotation.RequiresPermissions;-->
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -41,7 +41,7 @@ public class ${table.controllerName} extends ${superControllerClass} {
 public class ${table.controllerName} {
  </#if>
 
-    @Autowired
+    @Resource
     private ${table.serviceName} ${table.serviceName?uncap_first};
 
     /**
