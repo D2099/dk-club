@@ -59,5 +59,5 @@ public class SubjectInfoBO implements Serializable {
     /**
      * 题目答案
      */
-    private SubjectAnswerBO subjectAnswerBO;
+    private List<SubjectAnswerBO> optionList;
 }

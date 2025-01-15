@@ -19,7 +19,7 @@ public class SubjectAnswerBO implements Serializable {
     /**
      * 选项类型
      */
-    private Long optionType;
+    private Integer optionType;
     /**
      * 选项内容
      */

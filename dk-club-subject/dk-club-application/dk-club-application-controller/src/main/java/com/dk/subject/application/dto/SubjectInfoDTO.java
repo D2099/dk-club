@@ -2,6 +2,7 @@ package com.dk.subject.application.dto;
 
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.dk.subject.domain.bo.SubjectAnswerBO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -62,5 +63,5 @@ public class SubjectInfoDTO implements Serializable {
     /**
      * 题目答案
      */
-    private SubjectAnswerDTO subjectAnswerDTO;
+    private List<SubjectAnswerBO> optionList;
 }
