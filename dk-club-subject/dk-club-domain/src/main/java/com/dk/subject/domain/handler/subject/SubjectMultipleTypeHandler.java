@@ -2,6 +2,7 @@ package com.dk.subject.domain.handler.subject;
 
 import com.dk.subject.common.enums.SubjectTypeEnum;
 import com.dk.subject.domain.bo.SubjectInfoBO;
+import com.dk.subject.domain.bo.SubjectOptionBO;
 import com.dk.subject.infra.basic.entity.SubjectMultiple;
 import com.dk.subject.infra.basic.service.SubjectMultipleService;
 import com.google.common.base.Preconditions;
@@ -35,5 +36,10 @@ public class SubjectMultipleTypeHandler implements SubjectTypeHandler{
                         .setIsCorrect(option.getIsCorrect()))
                 .toList();
         return subjectMultipleService.saveBatch(subjectMultipleList);
+    }
+
+    @Override
+    public SubjectOptionBO queryAnswer(Long subjectId) {
+        return null;
     }
 }

@@ -1,14 +1,21 @@
 package com.dk.subject.domain.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.dk.subject.common.entity.PageInfo;
+import com.dk.subject.common.entity.PageResult;
 import com.dk.subject.domain.bo.SubjectInfoBO;
+import com.dk.subject.domain.bo.SubjectOptionBO;
 import com.dk.subject.domain.convert.SubjectInfoDomainConverter;
 import com.dk.subject.domain.handler.subject.SubjectTypeHandler;
 import com.dk.subject.domain.handler.subject.SubjectTypeHandlerFactory;
 import com.dk.subject.domain.service.SubjectInfoDomainService;
+import com.dk.subject.infra.basic.entity.SubjectCategory;
 import com.dk.subject.infra.basic.entity.SubjectInfo;
+import com.dk.subject.infra.basic.entity.SubjectLabel;
 import com.dk.subject.infra.basic.entity.SubjectMapping;
+import com.dk.subject.infra.basic.service.SubjectCategoryService;
 import com.dk.subject.infra.basic.service.SubjectInfoService;
+import com.dk.subject.infra.basic.service.SubjectLabelService;
 import com.dk.subject.infra.basic.service.SubjectMappingService;
 import com.google.common.base.Preconditions;
 import jakarta.annotation.Resource;
@@ -27,7 +34,13 @@ public class SubjectInfoDomainServiceImpl implements SubjectInfoDomainService {
     private SubjectInfoService subjectInfoService;
 
     @Resource
+    private SubjectLabelService subjectLabelService;
+
+    @Resource
     private SubjectMappingService subjectMappingService;
+
+    @Resource
+    private SubjectCategoryService subjectCategoryService;
 
     @Resource
     private SubjectTypeHandlerFactory subjectTypeHandlerFactory;
@@ -58,6 +71,60 @@ public class SubjectInfoDomainServiceImpl implements SubjectInfoDomainService {
             throw new RuntimeException("题目分类标签关联失败~");
         }
         return true;
+    }
+
+    @Override
+    public PageResult<SubjectInfoBO> getSubjectPage(SubjectInfoBO subjectInfoBO) {
+        if (log.isInfoEnabled()) {
+            log.info("SubjectInfoDomainServiceImpl.getSubjectList.subjectInfoBO:{}", JSONObject.toJSONString(subjectInfoBO));
+        }
+        PageInfo pageInfo = new PageInfo(subjectInfoBO.getCurrentPage(), subjectInfoBO.getPageSize());
+        SubjectInfo subjectInfo = SubjectInfoDomainConverter.INSTANCE.convertToSubjectInfo(subjectInfoBO);
+        Integer count = subjectInfoService.countConditions(
+                subjectInfo, subjectInfoBO.getCategoryId(), subjectInfoBO.getLabelId());
+        if (count <= 0) {
+            return new PageResult<>();
+        }
+        List<SubjectInfo> subjectInfoList = subjectInfoService.getSubjectList(
+                subjectInfo, pageInfo, subjectInfoBO.getCategoryId(), subjectInfoBO.getLabelId());
+        List<SubjectInfoBO> subjectInfoBOList = SubjectInfoDomainConverter.INSTANCE.convertToSubjectInfoBOList(subjectInfoList);
+        PageResult<SubjectInfoBO> page = new PageResult<>();
+        page.setCurrentPage(subjectInfoBO.getCurrentPage());
+        page.setPageSize(subjectInfoBO.getPageSize());
+        page.setRecords(subjectInfoBOList);
+        page.setTotal(count);
+        return page;
+    }
+
+    @Override
+    public SubjectInfoBO getSubjectDetail(SubjectInfoBO subjectInfoBO) {
+        // 获取题目信息
+        SubjectInfo subjectInfo = subjectInfoService.getSubjectInfo(subjectInfoBO.getId());
+        if (subjectInfo == null) {
+            return null;
+        }
+        SubjectTypeHandler handler = subjectTypeHandlerFactory.getSubjectTypeHandler(subjectInfo.getSubjectType());
+        SubjectOptionBO subjectOptionBO = handler.queryAnswer(subjectInfo.getId());
+        SubjectInfoBO subjectInfoBOResult =
+                SubjectInfoDomainConverter.INSTANCE.convertInfoOptionToSubjectInfoBO(subjectInfo, subjectOptionBO);
+        // 获取题目关联
+        List<SubjectMapping> subjectMappingList = subjectMappingService.getSubjectMappingBySubjectId(subjectInfoBO.getId());
+        // 获取题目分类标签信息
+        List<Long> categoryIds = subjectMappingList.stream().map(SubjectMapping::getCategoryId).distinct().toList();
+        List<Long> labelIds = subjectMappingList.stream().map(SubjectMapping::getLabelId).distinct().toList();
+        // 设置题目分类标签名称
+        if (!categoryIds.isEmpty()) {
+            List<SubjectCategory> categoryList = subjectCategoryService.getCategoryListByIds(categoryIds);
+            List<String> categoryNames = categoryList.stream().map(SubjectCategory::getCategoryName).toList();
+            subjectInfoBOResult.setCategoryNames(categoryNames);
+        }
+        if (!labelIds.isEmpty()) {
+            List<SubjectLabel> labelList = subjectLabelService.getLabelListByIds(labelIds);
+            List<String> labelNames = labelList.stream().map(SubjectLabel::getLabelName).toList();
+            subjectInfoBOResult.setLabelNames(labelNames);
+        }
+
+        return subjectInfoBOResult;
     }
 
     /**

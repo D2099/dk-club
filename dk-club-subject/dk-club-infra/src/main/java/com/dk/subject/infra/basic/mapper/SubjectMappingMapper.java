@@ -14,4 +14,6 @@ import java.util.List;
 @Mapper
 public interface SubjectMappingMapper extends BaseMapper<SubjectMapping> {
     List<Long> queryLabelIdList(SubjectMapping subjectMapping);
+
+    List<SubjectMapping> querySubjectMappingBySubjectId(Long subjectId);
 }

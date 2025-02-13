@@ -61,6 +61,11 @@ public class SubjectMappingServiceImpl extends ServiceImpl<SubjectMappingMapper,
         return subjectMappingMapper.queryLabelIdList(subjectMapping);
     }
 
+    @Override
+    public List<SubjectMapping> getSubjectMappingBySubjectId(Long subjectId) {
+        return subjectMappingMapper.querySubjectMappingBySubjectId(subjectId);
+    }
+
 }
 
 

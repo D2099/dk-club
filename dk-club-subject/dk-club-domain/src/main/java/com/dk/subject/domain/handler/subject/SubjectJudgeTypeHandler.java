@@ -2,6 +2,7 @@ package com.dk.subject.domain.handler.subject;
 
 import com.dk.subject.common.enums.SubjectTypeEnum;
 import com.dk.subject.domain.bo.SubjectInfoBO;
+import com.dk.subject.domain.bo.SubjectOptionBO;
 import com.dk.subject.infra.basic.entity.SubjectJudge;
 import com.dk.subject.infra.basic.service.SubjectJudgeService;
 import com.google.common.base.Preconditions;
@@ -33,5 +34,10 @@ public class SubjectJudgeTypeHandler implements SubjectTypeHandler{
                         .setIsCorrect(option.getIsCorrect()))
                 .toList();
         return subjectJudgeService.saveBatch(subjectJudgeList);
+    }
+
+    @Override
+    public SubjectOptionBO queryAnswer(Long subjectId) {
+        return null;
     }
 }

@@ -2,6 +2,7 @@ package com.dk.subject.domain.handler.subject;
 
 import com.dk.subject.common.enums.SubjectTypeEnum;
 import com.dk.subject.domain.bo.SubjectInfoBO;
+import com.dk.subject.domain.bo.SubjectOptionBO;
 
 /**
  * 题目类型处理接口
@@ -20,4 +21,6 @@ public interface SubjectTypeHandler {
      * @return
      */
     boolean add(SubjectInfoBO subjectInfoBO);
+
+    SubjectOptionBO queryAnswer(Long subjectId);
 }

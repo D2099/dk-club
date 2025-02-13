@@ -51,6 +51,13 @@ public interface SubjectMappingService extends IService<SubjectMapping> {
      * @return
      */
     List<Long> getLabelIdList(SubjectMapping subjectMapping);
+
+    /**
+     * 通过题目ID查询题目关联信息
+     * @param subjectId
+     * @return
+     */
+    List<SubjectMapping> getSubjectMappingBySubjectId(Long subjectId);
 }
 
 

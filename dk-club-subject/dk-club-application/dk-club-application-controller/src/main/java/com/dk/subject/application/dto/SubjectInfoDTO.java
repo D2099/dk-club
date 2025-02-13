@@ -2,6 +2,8 @@ package com.dk.subject.application.dto;
 
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.dk.subject.common.entity.PageInfo;
+import com.dk.subject.common.entity.PageResult;
 import com.dk.subject.domain.bo.SubjectAnswerBO;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -17,7 +19,7 @@ import java.util.List;
  */
 @Data
 @Accessors(chain = true)
-public class SubjectInfoDTO implements Serializable {
+public class SubjectInfoDTO extends PageInfo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -64,4 +66,12 @@ public class SubjectInfoDTO implements Serializable {
      * 题目答案
      */
     private List<SubjectAnswerBO> optionList;
+    /**
+     * 分类ID
+     */
+    private Long categoryId;
+    /**
+     * 标签ID
+     */
+    private Long labelId;
 }

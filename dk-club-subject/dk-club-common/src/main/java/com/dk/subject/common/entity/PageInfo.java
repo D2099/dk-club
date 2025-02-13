@@ -1,5 +1,6 @@
 package com.dk.subject.common.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -10,15 +11,26 @@ import java.io.Serializable;
 @Data
 public class PageInfo implements Serializable {
 
-    private Integer pageNo = 1;
+    private Integer currentPage;
 
-    private Integer pageSize = 20;
+    private Integer pageSize;
 
-    public Integer getPageNo() {
-        if (pageNo == null || pageNo < 1) {
+    private Integer start;
+
+    public PageInfo() {
+    }
+
+    public PageInfo (Integer currentPage, Integer pageSize) {
+        this.currentPage = currentPage;
+        this.pageSize = pageSize;
+        this.start = (getCurrentPage() - 1) * getPageSize();
+    }
+
+    public Integer getCurrentPage() {
+        if (currentPage == null || currentPage < 1) {
             return 1;
         }
-        return pageNo;
+        return currentPage;
     }
 
     public Integer getPageSize() {
@@ -27,6 +39,4 @@ public class PageInfo implements Serializable {
         }
         return pageSize;
     }
-
-
 }

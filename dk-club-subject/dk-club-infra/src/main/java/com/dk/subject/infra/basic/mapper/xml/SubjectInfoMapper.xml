@@ -64,4 +64,47 @@
         </if>
     </sql>
 
+    <select id="countConditions" resultType="Integer">
+        SELECT
+            COUNT(si.id)
+        FROM
+            subject_info AS si INNER JOIN subject_mapping AS sm ON si.id = sm.subject_id
+        <where>
+            sm.category_id = #{categoryId}
+            AND sm.label_id = #{labelId}
+            AND si.del_flag = 0
+            AND sm.del_flag = 0
+            <if test="subjectInfo.subjectDifficult != null and subjectInfo.subjectDifficult != ''">
+                si.subject_difficult = #{subjectInfo.subjectDifficult}
+            </if>
+        </where>
+    </select>
+
+    <select id="querySubjectList" resultType="com.dk.subject.infra.basic.entity.SubjectInfo">
+        SELECT
+            si.id,
+            si.subject_name,
+            si.subject_difficult,
+            si.settle_name,
+            si.subject_type,
+            si.subject_score,
+            si.subject_parse,
+            si.created_by,
+            si.created_time,
+            si.update_by,
+            si.update_time,
+            si.del_flag
+        FROM
+            subject_info AS si INNER JOIN subject_mapping AS sm ON si.id = sm.subject_id
+        <where>
+            sm.category_id = #{categoryId}
+            AND sm.label_id = #{labelId}
+            AND si.del_flag = 0
+            AND sm.del_flag = 0
+            <if test="subjectInfo.subjectDifficult != null and subjectInfo.subjectDifficult != ''">
+                si.subject_difficult = #{subjectInfo.subjectDifficult}
+            </if>
+        </where>
+        LIMIT #{pageInfo.start}, #{pageInfo.pageSize}
+    </select>
 </mapper>

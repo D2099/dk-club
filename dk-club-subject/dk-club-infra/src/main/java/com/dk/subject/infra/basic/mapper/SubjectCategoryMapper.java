@@ -3,6 +3,7 @@ package com.dk.subject.infra.basic.mapper;
 import com.dk.subject.infra.basic.entity.SubjectCategory;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface SubjectCategoryMapper extends BaseMapper<SubjectCategory> {
     List<SubjectCategory> queryPrimaryCategory(SubjectCategory subjectCategory);
 
     List<SubjectCategory> queryCategoryListByPrimary(SubjectCategory subjectCategory);
+
+    List<SubjectCategory> queryCategoryListByIds(@Param("categoryIds") List<Long> categoryIds);
 }

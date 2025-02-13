@@ -60,4 +60,15 @@
             <include refid="queryGeneralConditions"/>
         </where>
     </select>
+
+    <select id="querySubjectMappingBySubjectId" resultType="com.dk.subject.infra.basic.entity.SubjectMapping">
+        SELECT
+            <include refid="Base_Column_List"/>
+        FROM
+            subject_mapping
+        <where>
+            del_flag = 0
+            AND subject_id = #{subjectId}
+        </where>
+    </select>
 </mapper>

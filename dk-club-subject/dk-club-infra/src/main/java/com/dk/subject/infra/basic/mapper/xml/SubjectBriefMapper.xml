@@ -48,4 +48,14 @@
         </if>
     </sql>
 
+    <select id="querySubjectAnswerBySubjectId" resultType="com.dk.subject.infra.basic.entity.SubjectBrief">
+        SELECT
+            <include refid="Base_Column_List"/>
+        FROM
+            subject_brief
+        <where>
+            del_flag = 0
+            AND subject_id = #{subjectId}
+        </where>
+    </select>
 </mapper>

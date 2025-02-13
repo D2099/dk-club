@@ -1,5 +1,6 @@
 package com.dk.subject.infra.basic.service.impl;
 
+import com.dk.subject.common.entity.PageInfo;
 import com.dk.subject.infra.basic.entity.SubjectInfo;
 import com.dk.subject.infra.basic.mapper.SubjectInfoMapper;
 import com.dk.subject.infra.basic.service.SubjectInfoService;
@@ -54,6 +55,16 @@ public class SubjectInfoServiceImpl extends ServiceImpl<SubjectInfoMapper, Subje
             }
         }
 
+    }
+
+    @Override
+    public Integer countConditions(SubjectInfo subjectInfo, Long categoryId, Long labelId) {
+        return subjectInfoMapper.countConditions(subjectInfo, categoryId, labelId);
+    }
+
+    @Override
+    public List<SubjectInfo> getSubjectList(SubjectInfo subjectInfo, PageInfo pageInfo, Long categoryId, Long labelId) {
+        return subjectInfoMapper.querySubjectList(subjectInfo, pageInfo, categoryId, labelId);
     }
 
 }

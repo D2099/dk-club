@@ -56,6 +56,11 @@ public class SubjectBriefServiceImpl extends ServiceImpl<SubjectBriefMapper, Sub
 
     }
 
+    @Override
+    public SubjectBrief getSubjectAnswerBySubjectId(Long subjectId) {
+        return subjectBriefMapper.querySubjectAnswerBySubjectId(subjectId);
+    }
+
 }
 
 

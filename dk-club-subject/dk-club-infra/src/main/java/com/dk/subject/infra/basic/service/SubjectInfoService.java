@@ -1,5 +1,6 @@
 package com.dk.subject.infra.basic.service;
 
+import com.dk.subject.common.entity.PageInfo;
 import com.dk.subject.infra.basic.entity.SubjectInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import java.util.List;
@@ -44,6 +45,10 @@ public interface SubjectInfoService extends IService<SubjectInfo> {
      * @return
      */
     void remove(String ids);
+
+    Integer countConditions(SubjectInfo subjectInfo, Long categoryId, Long labelId);
+
+    List<SubjectInfo> getSubjectList(SubjectInfo subjectInfo, PageInfo pageInfo, Long categoryId, Long labelId);
 }
 
 

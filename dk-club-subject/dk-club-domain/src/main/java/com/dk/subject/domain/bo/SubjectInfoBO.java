@@ -1,5 +1,7 @@
 package com.dk.subject.domain.bo;
 
+import com.dk.subject.common.entity.PageInfo;
+import com.dk.subject.common.entity.PageResult;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -13,7 +15,7 @@ import java.util.List;
  */
 @Data
 @Accessors(chain = true)
-public class SubjectInfoBO implements Serializable {
+public class SubjectInfoBO extends PageInfo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -57,7 +59,23 @@ public class SubjectInfoBO implements Serializable {
      */
     private List<Long> labelIds;
     /**
+     * 分类名称
+     */
+    private List<String> categoryNames;
+    /**
+     * 标题名称
+     */
+    private List<String> labelNames;
+    /**
      * 题目答案
      */
     private List<SubjectAnswerBO> optionList;
+    /**
+     * 分类ID
+     */
+    private Long categoryId;
+    /**
+     * 标签ID
+     */
+    private Long labelId;
 }

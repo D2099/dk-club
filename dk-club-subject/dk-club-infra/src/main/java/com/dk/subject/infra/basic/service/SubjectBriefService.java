@@ -44,6 +44,13 @@ public interface SubjectBriefService extends IService<SubjectBrief> {
      * @return
      */
     void remove(String ids);
+
+    /**
+     * 通过题目ID获取题目选项
+     * @param subjectId
+     * @return
+     */
+    SubjectBrief getSubjectAnswerBySubjectId(Long subjectId);
 }
 
 
