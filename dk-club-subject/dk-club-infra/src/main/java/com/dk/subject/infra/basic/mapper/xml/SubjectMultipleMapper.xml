@@ -56,4 +56,13 @@
         </if>
     </sql>
 
+    <select id="querySubjectMultipleListBySubjectId" resultMap="BaseResultMap">
+        SELECT
+            <include refid="Base_Column_List"/>
+        FROM
+            subject_multiple
+        <where>
+            subject_id = #{subjectId}
+        </where>
+    </select>
 </mapper>

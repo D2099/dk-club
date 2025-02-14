@@ -4,6 +4,8 @@ import com.dk.subject.infra.basic.entity.SubjectMultiple;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * 多选题信息表 Mapper接口
  * @author DEMOKING
@@ -11,4 +13,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface SubjectMultipleMapper extends BaseMapper<SubjectMultiple> {
+    List<SubjectMultiple> querySubjectMultipleListBySubjectId(Long subjectId);
 }

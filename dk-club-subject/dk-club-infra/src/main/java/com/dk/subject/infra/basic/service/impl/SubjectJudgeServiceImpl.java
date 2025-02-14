@@ -56,6 +56,11 @@ public class SubjectJudgeServiceImpl extends ServiceImpl<SubjectJudgeMapper, Sub
 
     }
 
+    @Override
+    public List<SubjectJudge> getSubjectJudgeListBySubjectId(Long subjectId) {
+        return subjectJudgeMapper.querySubjectJudgeListBySubjectId(subjectId);
+    }
+
 }
 
 

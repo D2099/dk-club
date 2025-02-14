@@ -48,4 +48,13 @@
         </if>
     </sql>
 
+    <select id="querySubjectJudgeListBySubjectId" resultMap="BaseResultMap">
+        SELECT
+            <include refid="Base_Column_List"/>
+        FROM
+            subject_judge
+        <where>
+            subject_id = #{subjectId}
+        </where>
+    </select>
 </mapper>

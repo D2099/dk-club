@@ -1,8 +1,10 @@
 package com.dk.subject.domain.handler.subject;
 
 import com.dk.subject.common.enums.SubjectTypeEnum;
+import com.dk.subject.common.enums.YesOrNoEnum;
 import com.dk.subject.domain.bo.SubjectInfoBO;
 import com.dk.subject.domain.bo.SubjectOptionBO;
+import com.dk.subject.domain.convert.SubjectAnswerDomainConverter;
 import com.dk.subject.infra.basic.entity.SubjectJudge;
 import com.dk.subject.infra.basic.service.SubjectJudgeService;
 import com.google.common.base.Preconditions;
@@ -38,6 +40,14 @@ public class SubjectJudgeTypeHandler implements SubjectTypeHandler{
 
     @Override
     public SubjectOptionBO queryAnswer(Long subjectId) {
-        return null;
+        List<SubjectJudge> subjectJudgeList = subjectJudgeService.getSubjectJudgeListBySubjectId(subjectId);
+        SubjectJudge correctSubjectJudge = subjectJudgeList.stream().filter(sj -> sj.getIsCorrect().equals(YesOrNoEnum.YES.getCode())).findAny().orElse(null);
+        SubjectOptionBO subjectOptionBO = new SubjectOptionBO();
+        if (correctSubjectJudge != null) {
+            subjectOptionBO.setSubjectAnswer(correctSubjectJudge.getId().toString());
+        }
+        subjectOptionBO.setOptionList(
+                SubjectAnswerDomainConverter.INSTANCE.convertSubjectJudgeListToSubjectAnswerBOList(subjectJudgeList));
+        return subjectOptionBO;
     }
 }

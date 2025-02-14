@@ -56,6 +56,11 @@ public class SubjectRadioServiceImpl extends ServiceImpl<SubjectRadioMapper, Sub
 
     }
 
+    @Override
+    public List<SubjectRadio> getSubjectRadioListBySubjectId(Long subjectId) {
+        return subjectRadioMapper.querySubjectRadioListBySubjectId(subjectId);
+    }
+
 }
 
 

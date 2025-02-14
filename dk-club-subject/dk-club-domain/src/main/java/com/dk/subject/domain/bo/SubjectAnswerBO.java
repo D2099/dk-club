@@ -17,6 +17,10 @@ public class SubjectAnswerBO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
+     * 选项ID
+     */
+    private Long id;
+    /**
      * 选项类型
      */
     private Integer optionType;

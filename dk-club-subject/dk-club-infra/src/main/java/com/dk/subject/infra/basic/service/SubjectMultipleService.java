@@ -44,6 +44,13 @@ public interface SubjectMultipleService extends IService<SubjectMultiple> {
      * @return
      */
     void remove(String ids);
+
+    /**
+     * 通过题目ID获取多选题列表
+     * @param subjectId
+     * @return
+     */
+    List<SubjectMultiple> getSubjectMultipleListBySubjectId(Long subjectId);
 }
 
 

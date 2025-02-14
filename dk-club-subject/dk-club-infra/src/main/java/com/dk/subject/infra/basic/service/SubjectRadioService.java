@@ -44,6 +44,13 @@ public interface SubjectRadioService extends IService<SubjectRadio> {
      * @return
      */
     void remove(String ids);
+
+    /**
+     * 通过题目ID获取单选题列表
+     * @param subjectId
+     * @return
+     */
+    List<SubjectRadio> getSubjectRadioListBySubjectId(Long subjectId);
 }
 
 

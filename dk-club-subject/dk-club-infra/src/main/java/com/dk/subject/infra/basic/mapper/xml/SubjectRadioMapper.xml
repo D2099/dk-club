@@ -56,4 +56,13 @@
         </if>
     </sql>
 
+    <select id="querySubjectRadioListBySubjectId" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        subject_radio
+        <where>
+            subject_id = #{subjectId}
+        </where>
+    </select>
 </mapper>

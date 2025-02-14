@@ -56,6 +56,11 @@ public class SubjectMultipleServiceImpl extends ServiceImpl<SubjectMultipleMappe
 
     }
 
+    @Override
+    public List<SubjectMultiple> getSubjectMultipleListBySubjectId(Long subjectId) {
+        return subjectMultipleMapper.querySubjectMultipleListBySubjectId(subjectId);
+    }
+
 }
 
 

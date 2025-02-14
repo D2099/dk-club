@@ -44,6 +44,13 @@ public interface SubjectJudgeService extends IService<SubjectJudge> {
      * @return
      */
     void remove(String ids);
+
+    /**
+     * 通过题目ID获取判断题列表
+     * @param subjectId
+     * @return
+     */
+    List<SubjectJudge> getSubjectJudgeListBySubjectId(Long subjectId);
 }
 
 

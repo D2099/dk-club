@@ -4,6 +4,8 @@ import com.dk.subject.infra.basic.entity.SubjectJudge;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * 判断题 Mapper接口
  * @author DEMOKING
@@ -11,4 +13,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface SubjectJudgeMapper extends BaseMapper<SubjectJudge> {
+    List<SubjectJudge> querySubjectJudgeListBySubjectId(Long subjectId);
 }
