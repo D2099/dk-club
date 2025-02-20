@@ -19,7 +19,6 @@
         <mybatis-plus>3.5.7</mybatis-plus>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <druid.version>1.2.23</druid.version>
-        <lombok.version>1.18.30</lombok.version>
         <freemarker.version>2.3.33</freemarker.version>
         <velocity.version>2.0</velocity.version>
         <fastjson.version>2.0.42</fastjson.version>
@@ -82,11 +81,6 @@
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity-engine-core</artifactId>
             <version>${velocity.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mapstruct</groupId>
