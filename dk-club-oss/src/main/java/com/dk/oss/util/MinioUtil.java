@@ -3,6 +3,7 @@ package com.dk.oss.util;
 import com.dk.oss.entity.BucketInfo;
 import com.dk.oss.entity.FileInfo;
 import io.minio.*;
+import io.minio.http.Method;
 import io.minio.messages.Bucket;
 import io.minio.messages.Item;
 import jakarta.annotation.Resource;
@@ -105,5 +106,17 @@ public class MinioUtil {
      */
     public void deleteObject(String bucketName, String objectName) throws Exception {
         minioClient.removeObject(RemoveObjectArgs.builder().bucket(bucketName).object(objectName).build());
+    }
+
+    /**
+     * 获取图片文件预览链接
+     * @param bucketName 桶名称
+     * @param objectName 对象名称
+     * @throws Exception
+     */
+    public String getPreviewFileUrl(String bucketName, String objectName) throws Exception {
+        return minioClient.getPresignedObjectUrl(
+                GetPresignedObjectUrlArgs.builder().bucket(bucketName).object(objectName).method(Method.GET).build()
+        );
     }
 }
