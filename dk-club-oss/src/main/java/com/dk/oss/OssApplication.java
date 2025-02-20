@@ -1,13 +1,13 @@
-package com.dk.dkcluboss;
+package com.dk.oss;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DkClubOssApplication {
+public class OssApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DkClubOssApplication.class, args);
+        SpringApplication.run(OssApplication.class, args);
     }
 
 }
