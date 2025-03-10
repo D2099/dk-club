@@ -17,6 +17,12 @@ public interface SubjectAnswerDomainConverter {
 
     SubjectAnswerDomainConverter INSTANCE = Mappers.getMapper(SubjectAnswerDomainConverter.class);
 
+    SubjectAnswerBO convertSubjectJudgeToSubjectAnswerBO(SubjectJudge subjectJudge);
+
+    SubjectAnswerBO convertSubjectMultipleToSubjectAnswerBO(SubjectMultiple subjectMultiple);
+
+    SubjectAnswerBO convertSubjectRadioToSubjectAnswerBO(SubjectRadio subjectRadio);
+
     List<SubjectAnswerBO> convertSubjectJudgeListToSubjectAnswerBOList(List<SubjectJudge> subjectJudgeList);
 
     List<SubjectAnswerBO> convertSubjectListToSubjectAnswerBOList(List<SubjectMultiple> subjectMultipleList);

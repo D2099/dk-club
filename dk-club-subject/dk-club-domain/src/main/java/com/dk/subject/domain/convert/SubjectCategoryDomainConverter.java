@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * 题目分类Domain转换类
+ *
  */
 @Mapper
 public interface SubjectCategoryDomainConverter {
@@ -16,6 +17,8 @@ public interface SubjectCategoryDomainConverter {
     SubjectCategoryDomainConverter INSTANCE = Mappers.getMapper(SubjectCategoryDomainConverter.class);
 
     SubjectCategory convertToSubjectCategory(SubjectCategoryBO subjectCategoryBO);
+
+    SubjectCategoryBO convertToSubjectCategoryBO(SubjectCategory subjectCategory);
 
     List<SubjectCategoryBO> convertToSubjectCategoryList(List<SubjectCategory> subjectCategory);
 }

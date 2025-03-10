@@ -17,5 +17,7 @@ public interface SubjectLabelDTOConverter {
 
     SubjectLabelBO convertToSubjectLabelBO(SubjectLabelDTO SubjectLabelDTO);
 
+    SubjectLabelDTO convertToSubjectLabelDTO(SubjectLabelBO subjectLabelBO);
+
     List<SubjectLabelDTO> convertToSubjectLabelDTOList(List<SubjectLabelBO> subjectLabelBOList);
 }

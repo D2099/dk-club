@@ -17,5 +17,7 @@ public interface SubjectLabelDomainConverter {
 
     SubjectLabel convertToSubjectLabel(SubjectLabelBO subjectLabelBO);
 
+    SubjectLabelBO convertToSubjectLabelBO(SubjectLabel subjectLabel);
+
     List<SubjectLabelBO> convertToSubjectLabelBO(List<SubjectLabel> subjectLabelList);
 }
