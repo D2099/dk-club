@@ -1,4 +1,4 @@
-package com.dk.oss.service;
+package com.dk.oss.adapter;
 
 import com.dk.oss.entity.BucketInfo;
 import com.dk.oss.entity.FileInfo;
@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.InputStream;
 import java.util.List;
 
-public interface StorageService {
+public interface StorageAdapter {
 
     /**
      * 创建桶

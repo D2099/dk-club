@@ -1,13 +1,11 @@
-package com.dk.oss.service.impl;
+package com.dk.oss.adapter;
 
 import com.dk.oss.entity.BucketInfo;
 import com.dk.oss.entity.FileInfo;
-import com.dk.oss.service.StorageService;
 import com.dk.oss.util.MinioUtil;
 import jakarta.annotation.Resource;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
-import org.checkerframework.checker.units.qual.min;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,7 +13,7 @@ import java.io.InputStream;
 import java.util.List;
 
 @Service("minioStorageService")
-public class MinioStorageServiceImpl implements StorageService {
+public class MinioStorageAdapter implements StorageAdapter {
 
     @Resource
     private MinioUtil minioUtil;

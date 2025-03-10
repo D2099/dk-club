@@ -1,16 +1,13 @@
-package com.dk.oss.service.impl;
+package com.dk.oss.adapter;
 
 import com.dk.oss.entity.BucketInfo;
 import com.dk.oss.entity.FileInfo;
-import com.dk.oss.service.StorageService;
-import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
 import java.util.List;
 
-@Service("aliStorageService")
-public class AliStorageServiceImpl implements StorageService {
+public class AliStorageAdapter implements StorageAdapter {
     @Override
     public void createBucket(String bucketName) {
 
@@ -19,7 +16,7 @@ public class AliStorageServiceImpl implements StorageService {
     @Override
     public List<BucketInfo> getBucketNameList() {
         BucketInfo bucketInfo = new BucketInfo()
-                .setBucketName("ali");
+                .setBucketName("aliyun");
         return List.of(bucketInfo);
     }
 

@@ -1,7 +1,9 @@
 package com.dk.oss.config;
 
-import com.dk.oss.service.StorageService;
-import jakarta.annotation.Resource;
+import com.dk.oss.enums.OssTypeEnum;
+import com.dk.oss.adapter.StorageAdapter;
+import com.dk.oss.adapter.AliStorageAdapter;
+import com.dk.oss.adapter.MinioStorageAdapter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,18 +14,13 @@ public class StorageConfig {
     @Value("${storage.service.type}")
     private String serviceType;
 
-    @Resource
-    private StorageService aliStorageService;
-    
-    @Resource
-    private StorageService minioStorageService;
-
     @Bean("storageService")
-    public StorageService getStorageService() {
-        if ("ali".equals(serviceType)) {
-            return aliStorageService;
-        } else if ("minio".equals(serviceType)) {
-            return minioStorageService;
+    public StorageAdapter getStorageService() {
+        OssTypeEnum ossTypeEnum = OssTypeEnum.getEnumByCode(serviceType);
+        if (OssTypeEnum.MINIO.equals(ossTypeEnum)) {
+            return new MinioStorageAdapter();
+        } else if (OssTypeEnum.ALIYUN.equals(ossTypeEnum)) {
+            return new AliStorageAdapter();
         }
         return null;
     }
