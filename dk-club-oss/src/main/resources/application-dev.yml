@@ -1,6 +1,9 @@
 server:
   port: 4000
 
+storage:
+  service:
+    type: minio
 minio:
   url: http://61.171.114.201:9000
   accessKey: minioadmin

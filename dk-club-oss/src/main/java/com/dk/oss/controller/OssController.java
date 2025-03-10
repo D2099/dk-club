@@ -1,6 +1,7 @@
 package com.dk.oss.controller;
 
 import com.dk.oss.entity.BucketInfo;
+import com.dk.oss.service.FileService;
 import com.dk.oss.util.MinioUtil;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,9 @@ public class OssController {
 
     @Resource
     private MinioUtil minioUtil;
+
+    @Resource
+    private FileService fileService;
 
     /**
      * 请求测试
@@ -47,5 +51,14 @@ public class OssController {
     public String getPreviewFileUrl(@RequestParam("bucketName") String bucketName,
                                     @RequestParam("objectName") String objectName) throws Exception {
         return minioUtil.getPreviewFileUrl(bucketName, objectName);
+    }
+
+    /**
+     * 获取全部桶列表
+     * @return
+     */
+    @GetMapping("/getAllBucketList")
+    public String getAllBucketList() {
+        return fileService.getAllBucketNames();
     }
 }
