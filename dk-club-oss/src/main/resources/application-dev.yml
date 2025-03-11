@@ -8,3 +8,8 @@ minio:
   url: http://61.171.114.201:9000
   accessKey: minioadmin
   secretKey: minioadmin
+
+logging:
+  level:
+    org.springframework.cloud.config: DEBUG
+    com.alibaba.cloud: DEBUG
