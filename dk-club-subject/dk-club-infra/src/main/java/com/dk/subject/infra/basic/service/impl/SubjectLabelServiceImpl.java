@@ -70,6 +70,11 @@ public class SubjectLabelServiceImpl extends ServiceImpl<SubjectLabelMapper, Sub
         return subjectLabelMapper.querySubjectLabelList(labelIdList);
     }
 
+    @Override
+    public List<SubjectLabel> getLabelListByCategoryId(Long categoryId) {
+        return subjectLabelMapper.queryLabelListByCategoryId(categoryId);
+    }
+
 }
 
 

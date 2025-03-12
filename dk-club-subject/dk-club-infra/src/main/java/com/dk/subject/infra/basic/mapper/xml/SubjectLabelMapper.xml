@@ -7,6 +7,7 @@
         <id column="id" property="id" />
         <result column="label_name" property="labelName" />
         <result column="sort_num" property="sortNum" />
+        <result column="category_id" property="categoryId" />
         <result column="created_by" property="createdBy" />
         <result column="created_time" property="createdTime" />
         <result column="update_by" property="updateBy" />
@@ -24,6 +25,9 @@
         </if>
         <if test="sortNum != null">
             AND sort_num = #{sortNum}
+        </if>
+        <if test="categoryId != null">
+            AND category_id = #{categoryId}
         </if>
         <if test="createdBy != null">
             AND created_by = #{createdBy}
@@ -60,6 +64,17 @@
             <foreach collection="labelIds" item="labelId" open="(" separator="," close=")">
                 #{labelId}
             </foreach>
+        </where>
+    </select>
+
+    <select id="queryLabelListByCategoryId" resultType="com.dk.subject.infra.basic.entity.SubjectLabel">
+        SELECT
+            <include refid="Base_Column_List"/>
+        FROM
+            subject_label
+        <where>
+            del_flag = 0
+            AND category_id = #{categoryId,jdbcType=BIGINT}
         </where>
     </select>
 </mapper>

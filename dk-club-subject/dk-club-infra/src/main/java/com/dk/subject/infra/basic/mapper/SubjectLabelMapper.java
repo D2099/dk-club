@@ -17,4 +17,6 @@ public interface SubjectLabelMapper extends BaseMapper<SubjectLabel> {
     long count(SubjectLabel subjectLabel);
 
     List<SubjectLabel> querySubjectLabelList(@Param("labelIds") List<Long> labelIds);
+
+    List<SubjectLabel> queryLabelListByCategoryId(Long categoryId);
 }

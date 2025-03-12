@@ -66,6 +66,13 @@ public interface SubjectLabelService extends IService<SubjectLabel> {
      * @return
      */
     List<SubjectLabel> getLabelListByIds(List<Long> labelIdList);
+
+    /**
+     * 通过分类ID获取标签ID列表
+     * @param categoryId
+     * @return
+     */
+    List<SubjectLabel> getLabelListByCategoryId(Long categoryId);
 }
 
 

@@ -1,12 +1,15 @@
 package com.dk.subject.domain.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.dk.subject.common.enums.CategoryTypeEnum;
 import com.dk.subject.common.enums.DeleteFlagEnum;
 import com.dk.subject.domain.bo.SubjectLabelBO;
 import com.dk.subject.domain.convert.SubjectLabelDomainConverter;
 import com.dk.subject.domain.service.SubjectLabelDomainService;
+import com.dk.subject.infra.basic.entity.SubjectCategory;
 import com.dk.subject.infra.basic.entity.SubjectLabel;
 import com.dk.subject.infra.basic.entity.SubjectMapping;
+import com.dk.subject.infra.basic.service.SubjectCategoryService;
 import com.dk.subject.infra.basic.service.SubjectLabelService;
 import com.dk.subject.infra.basic.service.SubjectMappingService;
 import jakarta.annotation.Resource;
@@ -23,7 +26,13 @@ public class SubjectLabelDomainServiceImpl implements SubjectLabelDomainService 
     private SubjectLabelService SubjectLabelService;
 
     @Resource
+    private SubjectLabelService subjectLabelService;
+
+    @Resource
     private SubjectMappingService subjectMappingService;
+
+    @Resource
+    private SubjectCategoryService subjectCategoryService;
 
     @Override
     public Boolean add(SubjectLabelBO subjectLabelBO) {
@@ -57,6 +66,14 @@ public class SubjectLabelDomainServiceImpl implements SubjectLabelDomainService 
     @Override
     public List<SubjectLabelBO> getLabelListByCategoryId(SubjectLabelBO subjectLabelBO) {
         Long categoryId = subjectLabelBO.getCategoryId();
+        SubjectCategory subjectCategory = subjectCategoryService.getSubjectCategory(categoryId);
+        if (subjectCategory != null) {
+            if (CategoryTypeEnum.PRIMARY_CATEGORY.getCode().equals(subjectCategory.getCategoryType())) {
+                List<SubjectLabel> subjectLabelList = subjectLabelService.getLabelListByCategoryId(subjectCategory.getId());
+                List<SubjectLabelBO> subjectLabelBOList = SubjectLabelDomainConverter.INSTANCE.convertToSubjectLabelBO(subjectLabelList);
+                return subjectLabelBOList;
+            }
+        }
         SubjectMapping subjectMapping = new SubjectMapping()
                 .setCategoryId(categoryId)
                 .setDelFlag(DeleteFlagEnum.UN_DELETE.getCode());
