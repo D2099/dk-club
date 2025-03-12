@@ -17,7 +17,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <mysql-version>8.0.33</mysql-version>
         <mybatis-plus>3.5.7</mybatis-plus>
-        <mapstruct.version>1.5.5.Final</mapstruct.version>
         <druid.version>1.2.23</druid.version>
         <freemarker.version>2.3.33</freemarker.version>
         <velocity.version>2.0</velocity.version>
@@ -81,16 +80,6 @@
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity-engine-core</artifactId>
             <version>${velocity.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct-processor</artifactId>
-            <version>${mapstruct.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct</artifactId>
-            <version>${mapstruct.version}</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
