@@ -12,6 +12,8 @@
     <modules>
         <module>dk-club-oss</module>
         <module>dk-club-subject</module>
+        <module>dk-club-auth</module>
+        <module>dk-club-gateway</module>
     </modules>
 
     <properties>
