@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: dk-club-gateway
+  profiles:
+    active: '@profile.name@'

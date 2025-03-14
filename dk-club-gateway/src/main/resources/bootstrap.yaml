@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: dk-club-gateway
+  profiles:
+    active: dev
+  cloud:
+    bootstrap:
+      enabled: true
+    nacos:
+      config:
+        server-addr: http://61.171.114.201:8848
+        prefix: ${spring.application.name}
+        file-extension: yaml
+        group: DEFAULT_GROUP
+        namespace:
+      discovery:
+        enabled: true
+        server-addr: http://61.171.114.201:8848
+    gateway:
+      enabled: true
+      routes:
+        - id: oss
+          uri: lb://dk-club-oss
+          predicates:
+            - Path=/oss/**
+          filters:
+            - StripPrefix=1

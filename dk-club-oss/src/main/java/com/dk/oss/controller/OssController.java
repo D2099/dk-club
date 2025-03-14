@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  */
 @RefreshScope
 @RestController
-@RequestMapping("/oss")
+// @RequestMapping("/oss")
 public class OssController {
 
     @Resource
