@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: dk-club-subject
+  profiles:
+    active: dev
+  cloud:
+    bootstrap:
+      enabled: true
+    nacos:
+      config:
+        server-addr: http://61.171.114.201:8848
+        prefix: ${spring.application.name}
+        file-extension: yaml
+        group: DEFAULT_GROUP
+        namespace:
+      discovery:
+        enabled: true
+        server-addr: http://61.171.114.201:8848
