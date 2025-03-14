@@ -46,7 +46,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.dk.subject.AuthApplication</mainClass>
+                    <mainClass>com.dk.auth.AuthApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
