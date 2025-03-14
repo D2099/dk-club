@@ -13,3 +13,6 @@ spring:
         file-extension: yaml
         group: DEFAULT_GROUP
         namespace:
+      discovery:
+        enabled: true
+        server-addr: http://61.171.114.201:8848
