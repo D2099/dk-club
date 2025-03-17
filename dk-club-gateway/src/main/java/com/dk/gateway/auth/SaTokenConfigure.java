@@ -36,11 +36,6 @@ public class SaTokenConfigure {
                 SaRouter.match("/orders/**", r -> StpUtil.checkPermission("orders"));
                 
                 // 更多匹配 ...  */
-            })
-            // 异常处理方法：每次setAuth函数出现异常时进入 
-            .setError(e -> {
-                return SaResult.error(e.getMessage());
-            })
-            ;
+            });
     }
 }
