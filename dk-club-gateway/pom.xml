@@ -18,6 +18,7 @@
         <nacos.version>0.2.12</nacos.version>
         <cloud.alibaba.version>2023.0.1.2</cloud.alibaba.version>
         <spring-cloud.version>4.1.5</spring-cloud.version>
+        <sa-token.version>1.40.0</sa-token.version>
     </properties>
 
     <dependencies>
@@ -48,6 +49,23 @@
             <artifactId>spring-cloud-starter-loadbalancer</artifactId>
             <version>${spring-cloud.version}</version>
         </dependency>
+        <!-- Sa-Token 权限认证（Reactor响应式集成）, 在线文档：https://sa-token.cc -->
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-reactor-spring-boot3-starter</artifactId>
+            <version>${sa-token.version}</version>
+        </dependency>
+        <!-- Sa-Token 整合 Redis （使用 jackson 序列化方式） -->
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-redis-jackson</artifactId>
+            <version>${sa-token.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
