@@ -38,4 +38,13 @@ public class AuthUserDomainServiceImpl implements AuthUserDomainService {
         Integer addRow = authUserService.add(authUser);
         return addRow > 0;
     }
+
+    @Override
+    public Boolean updateInfo(AuthUserBo authUserBo) {
+        if (log.isInfoEnabled()) {
+            log.info("AuthUserDomainServiceImpl.updateInfo.authUserBo:{}", authUserBo);
+        }
+        AuthUser authUser = AuthUserDTOConverter.INSTANCE.convertAuthUser(authUserBo);
+        return authUserService.updateById(authUser);
+    }
 }

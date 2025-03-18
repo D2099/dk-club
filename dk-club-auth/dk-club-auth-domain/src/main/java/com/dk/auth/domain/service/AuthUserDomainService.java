@@ -7,4 +7,6 @@ import com.dk.auth.domain.bo.AuthUserBo;
  */
 public interface AuthUserDomainService {
     Boolean register(AuthUserBo authUserBo);
+
+    Boolean updateInfo(AuthUserBo authUserBo);
 }
