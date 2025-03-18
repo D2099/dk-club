@@ -25,14 +25,14 @@ public class SaTokenExceptionHandler implements ErrorWebExceptionHandler {
     public Mono<Void> handle(ServerWebExchange exchange, Throwable throwable) {
         ServerHttpRequest request = exchange.getRequest();
         ServerHttpResponse response = exchange.getResponse();
-        Integer code = 200;
-        String message = "请求成功~";
+        int code;
+        String message;
         if (throwable instanceof SaTokenException) {
             code = 401;
             message = "用户没有访问权限~";
         } else {
             code = 500;
-            message = "系统错误~";
+            message = "系统错误，请联系管理员~";
         }
         Result result = Result.fail(code, message);
 
