@@ -59,4 +59,8 @@ public class AuthUserBo implements Serializable {
      * 特殊字段
      */
     private String extJson;
+    /**
+     * 是否删除 0: 未删除 1: 已删除
+     */
+    private Integer delFlag;
 }

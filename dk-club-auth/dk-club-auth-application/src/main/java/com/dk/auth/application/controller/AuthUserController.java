@@ -129,6 +129,26 @@ public class AuthUserController {
     }
 
     /**
+     * 删除用户
+     *
+     * @param authUserDto com.dk.auth.application.dto.AuthUserDto
+     */
+    @PostMapping("/deleteUser")
+    public Result<Boolean> deleteUser(@Valid @RequestBody AuthUserDto authUserDto) {
+        try {
+            if (log.isInfoEnabled()) {
+                log.info("AuthUserController.deleteUser.authUserDto: {}", authUserDto);
+            }
+            Preconditions.checkNotNull(authUserDto.getId(), "用户ID不能为空~");
+            AuthUserBo authUserBo = AuthUserDTOConverter.INSTANCE.convertAuthUserBo(authUserDto);
+            return Result.ok(authUserDomainService.deleteUser(authUserBo));
+        } catch (Exception e) {
+            log.error("AuthUserController.updateInfo，原因：{}", e.getMessage());
+            return Result.fail("注册失败，原因：" + e.getMessage());
+        }
+    }
+
+    /**
      * 用户信息通用校验
      */
     private void paramGeneralVerify(AuthUserDto authUserDto) {

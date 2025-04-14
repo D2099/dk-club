@@ -1,5 +1,6 @@
 package com.dk.auth.application.dto;
 
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -60,4 +61,8 @@ public class AuthUserDto implements Serializable {
      * 特殊字段
      */
     private String extJson;
+    /**
+     * 是否删除 0: 未删除 1: 已删除
+     */
+    private Integer delFlag;
 }
