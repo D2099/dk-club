@@ -149,6 +149,27 @@ public class AuthUserController {
     }
 
     /**
+     * 更改用户状态
+     *
+     * @param authUserDto com.dk.auth.application.dto.AuthUserDto
+     */
+    @PostMapping("/changeStatus")
+    public Result<Boolean> changeStatus(@Valid @RequestBody AuthUserDto authUserDto) {
+        try {
+            if (log.isInfoEnabled()) {
+                log.info("AuthUserController.changeStatus.authUserDto: {}", authUserDto);
+            }
+            Preconditions.checkNotNull(authUserDto.getId(), "用户ID不能为空~");
+            Preconditions.checkNotNull(authUserDto.getStatus(), "用户状态不能为空~");
+            AuthUserBo authUserBo = AuthUserDTOConverter.INSTANCE.convertAuthUserBo(authUserDto);
+            return Result.ok(authUserDomainService.changeStatus(authUserBo));
+        } catch (Exception e) {
+            log.error("AuthUserController.changeStatus，原因：{}", e.getMessage());
+            return Result.fail("更新用户状态失败~，原因：" + e.getMessage());
+        }
+    }
+
+    /**
      * 用户信息通用校验
      */
     private void paramGeneralVerify(AuthUserDto authUserDto) {

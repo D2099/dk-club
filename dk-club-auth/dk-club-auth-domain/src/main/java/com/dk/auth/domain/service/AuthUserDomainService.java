@@ -27,4 +27,11 @@ public interface AuthUserDomainService {
      * @return
      */
     Boolean deleteUser(AuthUserBo authUserBo);
+
+    /**
+     * 更新用户状态
+     * @param authUserBo
+     * @return
+     */
+    Boolean changeStatus(AuthUserBo authUserBo);
 }

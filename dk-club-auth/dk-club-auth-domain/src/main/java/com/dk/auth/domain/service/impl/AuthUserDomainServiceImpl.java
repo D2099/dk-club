@@ -57,4 +57,13 @@ public class AuthUserDomainServiceImpl implements AuthUserDomainService {
         AuthUser authUser = AuthUserDTOConverter.INSTANCE.convertAuthUser(authUserBo);
         return authUserService.updateById(authUser);
     }
+
+    @Override
+    public Boolean changeStatus(AuthUserBo authUserBo) {
+        if (log.isInfoEnabled()) {
+            log.info("AuthUserDomainServiceImpl.changeStatus.authUserBo:{}", authUserBo);
+        }
+        AuthUser authUser = AuthUserDTOConverter.INSTANCE.convertAuthUser(authUserBo);
+        return authUserService.updateById(authUser);
+    }
 }
