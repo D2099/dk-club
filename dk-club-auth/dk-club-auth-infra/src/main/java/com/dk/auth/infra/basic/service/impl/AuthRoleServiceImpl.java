@@ -56,6 +56,11 @@ public class AuthRoleServiceImpl extends ServiceImpl<AuthRoleMapper, AuthRole> i
 
     }
 
+    @Override
+    public AuthRole getAuthRoleByConditions(AuthRole authRole) {
+        return authRoleMapper.queryAuthRoleByConditions(authRole);
+    }
+
 }
 
 

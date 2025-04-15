@@ -48,4 +48,12 @@
         </if>
     </sql>
 
+    <select id="queryAuthRoleByConditions" resultType="com.dk.auth.infra.basic.entity.AuthRole">
+        SELECT
+            <include refid="Base_Column_List"/>
+        FROM auth_role
+        <where>
+            <include refid="queryGeneralConditions"/>
+        </where>
+    </select>
 </mapper>

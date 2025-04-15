@@ -44,6 +44,13 @@ public interface AuthRoleService extends IService<AuthRole> {
      * @return
      */
     void remove(String ids);
+
+    /**
+     * 通过多条件获取角色信息
+     * @param authRole
+     * @return
+     */
+    AuthRole getAuthRoleByConditions(AuthRole authRole);
 }
 
 
