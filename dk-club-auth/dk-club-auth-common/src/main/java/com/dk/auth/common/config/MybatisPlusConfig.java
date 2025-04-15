@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableTransactionManagement  //开启事务
 @Configuration  //配置类注解
-@MapperScan("com.dk.subject.infra.basic.mapper")
+@MapperScan("com.dk.auth.infra.basic.mapper")
 public class MybatisPlusConfig {
 
     //配置拦截器
