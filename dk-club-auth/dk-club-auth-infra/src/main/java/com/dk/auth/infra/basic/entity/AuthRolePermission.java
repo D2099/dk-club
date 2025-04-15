@@ -51,5 +51,5 @@ public class AuthRolePermission implements Serializable {
      * 是否删除 0: 未删除 1: 已删除
      */
     @TableLogic
-    private Boolean delFlag;
+    private Integer delFlag;
 }
