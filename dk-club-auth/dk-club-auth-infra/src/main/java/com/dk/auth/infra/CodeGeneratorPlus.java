@@ -73,7 +73,7 @@ public class CodeGeneratorPlus {
 //                            .addTableSuffix("_db") // 增加过滤表后缀
 //                            .addFieldPrefix("t_") // 增加过滤字段前缀
 //                            .addFieldSuffix("_field") // 增加过滤字段后缀
-                           .addInclude("auth_role") // 表匹配
+                           .addInclude("auth_user_role") // 表匹配
 
                             // Entity 策略配置
                             .entityBuilder()
