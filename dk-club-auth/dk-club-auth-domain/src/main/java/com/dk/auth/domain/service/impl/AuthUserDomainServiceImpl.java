@@ -4,7 +4,7 @@ import cn.dev33.satoken.secure.SaSecureUtil;
 import com.dk.auth.common.enums.DeleteFlagEnum;
 import com.dk.auth.common.enums.UserStatusEnum;
 import com.dk.auth.domain.bo.AuthUserBo;
-import com.dk.auth.domain.convert.AuthUserDTOConverter;
+import com.dk.auth.domain.convert.AuthUserDomainConverter;
 import com.dk.auth.domain.service.AuthUserDomainService;
 import com.dk.auth.infra.basic.entity.AuthUser;
 import com.dk.auth.infra.basic.service.AuthUserService;
@@ -29,7 +29,7 @@ public class AuthUserDomainServiceImpl implements AuthUserDomainService {
         if (log.isInfoEnabled()) {
             log.info("AuthUserDomainServiceImpl.register.authUserBo:{}", authUserBo);
         }
-        AuthUser authUser = AuthUserDTOConverter.INSTANCE.convertAuthUser(authUserBo);
+        AuthUser authUser = AuthUserDomainConverter.INSTANCE.convertAuthUser(authUserBo);
         authUser.setStatus(UserStatusEnum.OPEN.getCode());
         authUser.setDelFlag(DeleteFlagEnum.UN_DELETE.getCode());
         // aes加密
@@ -44,7 +44,7 @@ public class AuthUserDomainServiceImpl implements AuthUserDomainService {
         if (log.isInfoEnabled()) {
             log.info("AuthUserDomainServiceImpl.updateInfo.authUserBo:{}", authUserBo);
         }
-        AuthUser authUser = AuthUserDTOConverter.INSTANCE.convertAuthUser(authUserBo);
+        AuthUser authUser = AuthUserDomainConverter.INSTANCE.convertAuthUser(authUserBo);
         return authUserService.updateById(authUser);
     }
 
@@ -54,7 +54,7 @@ public class AuthUserDomainServiceImpl implements AuthUserDomainService {
             log.info("AuthUserDomainServiceImpl.deleteUser.authUserBo:{}", authUserBo);
         }
         authUserBo.setDelFlag(DeleteFlagEnum.UN_DELETE.getCode());
-        AuthUser authUser = AuthUserDTOConverter.INSTANCE.convertAuthUser(authUserBo);
+        AuthUser authUser = AuthUserDomainConverter.INSTANCE.convertAuthUser(authUserBo);
         return authUserService.updateById(authUser);
     }
 
@@ -63,7 +63,7 @@ public class AuthUserDomainServiceImpl implements AuthUserDomainService {
         if (log.isInfoEnabled()) {
             log.info("AuthUserDomainServiceImpl.changeStatus.authUserBo:{}", authUserBo);
         }
-        AuthUser authUser = AuthUserDTOConverter.INSTANCE.convertAuthUser(authUserBo);
+        AuthUser authUser = AuthUserDomainConverter.INSTANCE.convertAuthUser(authUserBo);
         return authUserService.updateById(authUser);
     }
 }
