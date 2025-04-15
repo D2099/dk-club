@@ -1,8 +1,5 @@
-package com.dk.auth.infra.basic.entity;
+package com.dk.auth.domain.bo;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -10,14 +7,13 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 权限表 实体类
+ * 权限Bo
  * @author DEMOKING
  * @date 2025-04-15
  */
 @Data
 @Accessors(chain = true)
-@TableName("auth_permission")
-public class AuthPermission implements Serializable {
+public class AuthPermissionBo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -35,7 +31,6 @@ public class AuthPermission implements Serializable {
     /**
      * 权限类型 0菜单 1操作
      */
-    @TableField("`type`")
     private Integer type;
     /**
      * 菜单路由
@@ -48,7 +43,6 @@ public class AuthPermission implements Serializable {
     /**
      * 展示状态 0 展示 1隐藏
      */
-    @TableField("`show`")
     private Integer show;
     /**
      * 图标
@@ -77,6 +71,5 @@ public class AuthPermission implements Serializable {
     /**
      * 是否删除 0: 未删除 1: 已删除
      */
-    @TableLogic
     private Integer delFlag;
 }

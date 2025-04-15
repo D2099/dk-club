@@ -33,8 +33,8 @@ public class AuthPermissionServiceImpl extends ServiceImpl<AuthPermissionMapper,
     }
 
     @Override
-    public void add(AuthPermission authPermission) {
-        authPermissionMapper.insert(authPermission);
+    public int add(AuthPermission authPermission) {
+        return authPermissionMapper.insert(authPermission);
     }
 
     @Override

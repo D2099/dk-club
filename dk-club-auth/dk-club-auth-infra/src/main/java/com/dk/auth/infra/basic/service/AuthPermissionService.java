@@ -29,7 +29,7 @@ public interface AuthPermissionService extends IService<AuthPermission> {
      * @param authPermission 根据需要进行传值
      * @return
      */
-    void add(AuthPermission authPermission);
+    int add(AuthPermission authPermission);
 
     /**
      * 权限表修改

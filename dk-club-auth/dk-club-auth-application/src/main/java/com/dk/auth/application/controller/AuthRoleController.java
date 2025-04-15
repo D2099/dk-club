@@ -100,7 +100,7 @@ public class AuthRoleController {
     @PostMapping("/delete")
     public Result<Boolean> delete(@Valid @RequestBody AuthRoleDto authRole) {
         if (log.isInfoEnabled()) {
-            log.info(".AuthRoleController.delete.authRole: {}", authRole);
+            log.info("AuthRoleController.delete.authRole: {}", authRole);
         }
         try {
             Preconditions.checkNotNull(authRole.getId(), "ID不能为空~");
