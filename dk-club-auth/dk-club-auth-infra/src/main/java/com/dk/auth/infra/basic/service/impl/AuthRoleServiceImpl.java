@@ -33,8 +33,8 @@ public class AuthRoleServiceImpl extends ServiceImpl<AuthRoleMapper, AuthRole> i
     }
 
     @Override
-    public void add(AuthRole authRole) {
-        authRoleMapper.insert(authRole);
+    public int add(AuthRole authRole) {
+        return authRoleMapper.insert(authRole);
     }
 
     @Override

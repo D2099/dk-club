@@ -29,7 +29,7 @@ public interface AuthRoleService extends IService<AuthRole> {
      * @param authRole 根据需要进行传值
      * @return
      */
-    void add(AuthRole authRole);
+    int add(AuthRole authRole);
 
     /**
      * 角色表修改
