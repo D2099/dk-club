@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dk.auth.infra.basic.mapper.AuthPermissionMapper">
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.dk.auth.infra.basic.entity.AuthPermission">
+                    <id column="id" property="id" />
+                    <result column="name" property="name" />
+                    <result column="parent_id" property="parentId" />
+                    <result column="type" property="type" />
+                    <result column="menu_url" property="menuUrl" />
+                    <result column="status" property="status" />
+                    <result column="show" property="show" />
+                    <result column="icon" property="icon" />
+                    <result column="permission_key" property="permissionKey" />
+                    <result column="created_by" property="createdBy" />
+                    <result column="created_time" property="createdTime" />
+                    <result column="update_by" property="updateBy" />
+                    <result column="update_time" property="updateTime" />
+                    <result column="del_flag" property="delFlag" />
+        </resultMap>
+
+        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+            id, name, parent_id, type, menu_url, status, show, icon, permission_key, created_by, created_time, update_by, update_time, del_flag
+        </sql>
+
+
+    <!-- 通用条件查询 -->
+    <sql id="queryGeneralConditions">
+        <if test="id != null">
+            AND id = #{id}
+        </if>
+        <if test="name != null and name != ''">
+            AND name LIKE CONCAT('%', #{name}, '%')
+        </if>
+        <if test="parentId != null">
+            AND parent_id = #{parentId}
+        </if>
+        <if test="type != null">
+            AND type = #{type}
+        </if>
+        <if test="menuUrl != null and menuUrl != ''">
+            AND menu_url LIKE CONCAT('%', #{menuUrl}, '%')
+        </if>
+        <if test="status != null">
+            AND status = #{status}
+        </if>
+        <if test="show != null">
+            AND show = #{show}
+        </if>
+        <if test="icon != null and icon != ''">
+            AND icon LIKE CONCAT('%', #{icon}, '%')
+        </if>
+        <if test="permissionKey != null and permissionKey != ''">
+            AND permission_key LIKE CONCAT('%', #{permissionKey}, '%')
+        </if>
+        <if test="createdBy != null">
+            AND created_by = #{createdBy}
+        </if>
+        <if test="createdTime != null">
+            AND created_time = #{createdTime}
+        </if>
+        <if test="updateBy != null">
+            AND update_by = #{updateBy}
+        </if>
+        <if test="updateTime != null">
+            AND update_time = #{updateTime}
+        </if>
+        <if test="delFlag != null">
+            AND del_flag = #{delFlag}
+        </if>
+    </sql>
+
+</mapper>
