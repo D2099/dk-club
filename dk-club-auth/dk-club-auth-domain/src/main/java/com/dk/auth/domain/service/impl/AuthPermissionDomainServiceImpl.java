@@ -33,4 +33,22 @@ public class AuthPermissionDomainServiceImpl implements AuthPermissionDomainServ
         int row = authPermissionService.add(authPermission);
         return row > 0;
     }
+
+    @Override
+    public boolean update(AuthPermissionBo authPermissionBo) {
+        if (log.isInfoEnabled()) {
+            log.info("AuthPermissionDomainServiceImpl.update.authPermissionBo：{}", authPermissionBo);
+        }
+        AuthPermission authPermission = AuthPermissionDomainConverter.INSTANCE.convertAuthPermission(authPermissionBo);
+        return authPermissionService.updateById(authPermission);
+    }
+
+    @Override
+    public boolean delete(AuthPermissionBo authPermissionBo) {
+        if (log.isInfoEnabled()) {
+            log.info("AuthPermissionDomainServiceImpl.delete.authPermissionBo：{}", authPermissionBo);
+        }
+        AuthPermission authPermission = AuthPermissionDomainConverter.INSTANCE.convertAuthPermission(authPermissionBo);
+        return authPermissionService.removeById(authPermission);
+    }
 }

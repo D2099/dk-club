@@ -1,20 +1,19 @@
 package com.dk.auth.application.controller;
 
 import com.dk.auth.application.convert.AuthPermissionDTOConverter;
-import com.dk.auth.application.convert.AuthRoleDTOConverter;
 import com.dk.auth.application.dto.AuthPermissionDto;
 import com.dk.auth.common.entity.Result;
 import com.dk.auth.domain.bo.AuthPermissionBo;
-import com.dk.auth.domain.bo.AuthRoleBo;
 import com.dk.auth.domain.service.AuthPermissionDomainService;
 import com.dk.auth.infra.basic.entity.AuthPermission;
 import com.dk.auth.infra.basic.service.AuthPermissionService;
 import com.google.common.base.Preconditions;
 import jakarta.annotation.Resource;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 /**
@@ -54,7 +53,7 @@ public class AuthPermissionController {
 
     /**
      * 新增权限表
-     * @param authPermission com.dk.auth.infra.basic.entity.AuthPermission
+     * @param authPermission com.dk.auth.application.dto.AuthPermissionDto
      */
     @PostMapping("/add")
     public Result<Boolean> add(@Valid @RequestBody AuthPermissionDto authPermission) {
@@ -76,13 +75,43 @@ public class AuthPermissionController {
     }
 
     /**
-     * 更新权限表
-     * @param  authPermission com.dk.auth.infra.basic.entity.AuthPermission
+     * 更新权限信息
+     * @param authPermission com.dk.auth.application.dto.AuthPermissionDto
      */
-    @PutMapping("/update")
-    public int update(@Valid @RequestBody AuthPermission authPermission) {
-        int num = authPermissionService.modify(authPermission);
-        return num;
+    @PostMapping("/update")
+    public Result<Boolean> update(@Valid @RequestBody AuthPermissionDto authPermission) {
+        if (log.isInfoEnabled()) {
+            log.info("AuthPermissionController.update.authPermission: {}", authPermission);
+        }
+        try {
+            Preconditions.checkNotNull(authPermission.getId(), "ID不能为空~");
+            AuthPermissionBo authPermissionBo = AuthPermissionDTOConverter.INSTANCE.convertAuthPermissionBo(authPermission);
+            boolean result = authPermissionDomainService.update(authPermissionBo);
+            return Result.ok(result);
+        } catch (Exception e) {
+            log.error("更新权限信息失败，原因：{}", e.getMessage());
+            return Result.fail("更新权限信息失败~");
+        }
+    }
+
+    /**
+     * 删除权限信息
+     * @param authPermission com.dk.auth.application.dto.AuthPermissionDto
+     */
+    @PostMapping("/delete")
+    public Result<Boolean> delete(@Valid @RequestBody AuthPermissionDto authPermission) {
+        if (log.isInfoEnabled()) {
+            log.info("AuthPermissionController.delete.authPermission: {}", authPermission);
+        }
+        try {
+            Preconditions.checkNotNull(authPermission.getId(), "ID不能为空~");
+            AuthPermissionBo authPermissionBo = AuthPermissionDTOConverter.INSTANCE.convertAuthPermissionBo(authPermission);
+            boolean result = authPermissionDomainService.delete(authPermissionBo);
+            return Result.ok(result);
+        } catch (Exception e) {
+            log.error("删除权限信息失败，原因：{}", e.getMessage());
+            return Result.fail("删除权限信息失败~");
+        }
     }
 
     /**
