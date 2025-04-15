@@ -53,9 +53,8 @@ public class AuthUserDomainServiceImpl implements AuthUserDomainService {
         if (log.isInfoEnabled()) {
             log.info("AuthUserDomainServiceImpl.deleteUser.authUserBo:{}", authUserBo);
         }
-        authUserBo.setDelFlag(DeleteFlagEnum.UN_DELETE.getCode());
         AuthUser authUser = AuthUserDomainConverter.INSTANCE.convertAuthUser(authUserBo);
-        return authUserService.updateById(authUser);
+        return authUserService.removeById(authUser);
     }
 
     @Override
