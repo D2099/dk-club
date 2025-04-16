@@ -65,5 +65,6 @@ mybatis-plus:
 logging:
   config: classpath:log4j2-spring.xml
   level:
+    root: info
     com.dk.auth.application: info
     com.dk.auth.infra.basic.mapper: info

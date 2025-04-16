@@ -41,10 +41,20 @@
             <version>${druid.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-log4j2 -->
+        <!--<dependency>-->
+        <!--    <groupId>org.springframework.boot</groupId>-->
+        <!--    <artifactId>spring-boot-starter-logging</artifactId>-->
+        <!--    <version>${log4j.version}</version>-->
+        <!--</dependency>-->
+        <!-- log4j2 核心 Starter，排除冲突项 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-logging</artifactId>
-            <version>${log4j.version}</version>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+        <!-- SLF4J 适配器，log4j2 实现 slf4j 接口 -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j2-impl</artifactId>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>

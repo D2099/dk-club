@@ -35,6 +35,12 @@
             <groupId>cn.dev33</groupId>
             <artifactId>sa-token-spring-boot3-starter</artifactId>
             <version>1.40.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!-- Sa-Token 整合 Redis （使用 jackson 序列化方式） -->
         <dependency>
@@ -57,12 +63,12 @@
             <version>${mapstruct.version}</version>
         </dependency>
         <!-- Lombok 编译期处理器 -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok-mapstruct-binding</artifactId>
-            <version>0.2.0</version>
-            <scope>provided</scope>
-        </dependency>
+        <!--<dependency>-->
+        <!--    <groupId>org.projectlombok</groupId>-->
+        <!--    <artifactId>lombok-mapstruct-binding</artifactId>-->
+        <!--    <version>0.2.0</version>-->
+        <!--    <scope>provided</scope>-->
+        <!--</dependency>-->
     </dependencies>
 
 </project>

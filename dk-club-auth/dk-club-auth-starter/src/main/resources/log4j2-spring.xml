@@ -10,7 +10,7 @@
         <property name="LOG_PATTERN" value="%date{HH:mm:ss.SSS} %X{PFTID} [%thread] %-5level %logger{36} - %msg%n" />
         <!-- 定义日志存储的路径 -->
         <property name="FILE_PATH" value="../log" />
-        <property name="FILE_NAME" value="jcClub.log" />
+        <property name="FILE_NAME" value="dkClub.log" />
     </Properties>
 
     <!--https://logging.apache.org/log4j/2.x/manual/appenders.html-->
@@ -75,7 +75,7 @@
     <!--Logger节点用来单独指定日志的形式，比如要为指定包下的class指定不同的日志级别等。-->
     <!--然后定义loggers，只有定义了logger并引入的appender，appender才会生效-->
     <loggers>
-        <root level="info">
+        <root level="INFO">
             <appender-ref ref="Console"/>
             <appender-ref ref="RollingFileInfo"/>
             <appender-ref ref="RollingFileWarn"/>
