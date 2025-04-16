@@ -27,13 +27,13 @@ public class SaTokenConfigure {
                 // 登录校验 -- 拦截所有路由，并排除/user/doLogin 用于开放登录 
                 SaRouter.match("/**", "/auth/user/doLogin", r -> StpUtil.checkLogin());
                 // SaRouter.match("/subject/subject-category/add", r -> StpUtil.checkPermission("subject:category:add"));
-                SaRouter.match("/subject/subject-category/add", r -> StpUtil.checkRole("admin"));
+                SaRouter.match("/subject/subject-category/add", r -> StpUtil.checkPermission("subject:add"));
                 // System.out.println("--------- flag 2，请求进入了拦截器，访问的 path 是：" + SaHolder.getRequest().getRequestPath());
                 // 权限认证 -- 不同模块, 校验不同权限 
-                SaRouter.match("/user/**", r -> StpUtil.checkPermission("user"));
-                SaRouter.match("/admin/**", r -> StpUtil.checkPermission("admin"));
-                SaRouter.match("/goods/**", r -> StpUtil.checkPermission("goods"));
-                SaRouter.match("/orders/**", r -> StpUtil.checkPermission("orders"));
+                // SaRouter.match("/user/**", r -> StpUtil.checkPermission("user"));
+                // SaRouter.match("/admin/**", r -> StpUtil.checkPermission("admin"));
+                // SaRouter.match("/goods/**", r -> StpUtil.checkPermission("goods"));
+                // SaRouter.match("/orders/**", r -> StpUtil.checkPermission("orders"));
                 
                 // 更多匹配 ...  */
             });
