@@ -1,5 +1,7 @@
 package com.dk.auth.infra.basic.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.dk.auth.infra.basic.entity.AuthRolePermission;
 import com.dk.auth.infra.basic.mapper.AuthRolePermissionMapper;
 import com.dk.auth.infra.basic.service.AuthRolePermissionService;
@@ -54,6 +56,12 @@ public class AuthRolePermissionServiceImpl extends ServiceImpl<AuthRolePermissio
             }
         }
 
+    }
+
+    @Override
+    public List<AuthRolePermission> getAuthRolePermissionByRoleIds(List<Long> roleIds) {
+        return authRolePermissionMapper.selectList(new LambdaQueryWrapper<AuthRolePermission>()
+                .in(AuthRolePermission::getRoleId, roleIds));
     }
 
 }

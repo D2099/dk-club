@@ -40,6 +40,10 @@ public class AuthUserBo implements Serializable {
      */
     private String password;
     /**
+     * md5密码盐
+     */
+    private String salt;
+    /**
      * 性别
      */
     private Integer sex;

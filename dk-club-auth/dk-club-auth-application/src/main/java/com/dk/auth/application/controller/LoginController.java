@@ -3,30 +3,40 @@ package com.dk.auth.application.controller;
 import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.dev33.satoken.util.SaResult;
+import com.dk.auth.domain.bo.AuthUserBo;
+import com.dk.auth.domain.service.AuthUserDomainService;
+import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Objects;
+
 /**
- * 登录测试 
+ * 用户登录
  */
+@Slf4j
 @RestController
 @RequestMapping("/user/")
 public class LoginController {
 
-    // 测试登录  ---- http://localhost:8081/acc/doLogin?name=zhang&pwd=123456
+    @Resource
+    private AuthUserDomainService authUserDomainService;
+
+    // 用户登录  ---- http://localhost:8081/acc/doLogin?name=zhang&pwd=123456
     @RequestMapping("doLogin")
-    public SaResult doLogin(@RequestParam("name") String name,
-                            @RequestParam("pwd") String pwd) {
-        // 此处仅作模拟示例，真实项目需要从数据库中查询数据进行比对 
-        if("zhang".equals(name) && "123456".equals(pwd)) {
-            StpUtil.login(10001);
-            // 第2步，获取 Token  相关参数
-            SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
-            // 第3步，返回给前端
-            return SaResult.data(tokenInfo);
+    public SaResult doLogin(@RequestParam("username") String username,
+                            @RequestParam("password") String password) {
+        if (log.isInfoEnabled()) {
+            log.info("LoginController.doLogin, username:{}, password:{}", username, password);
         }
-        return SaResult.error("登录失败");
+        try {
+            return authUserDomainService.login(username, password);
+        } catch (Exception e) {
+            log.error("登录失败，用户名：{} ，原因：{}", username, e.getMessage());
+            return SaResult.error("登录失败~");
+        }
     }
 
     // 查询登录状态  ---- http://localhost:8081/acc/isLogin

@@ -44,6 +44,13 @@ public interface AuthPermissionService extends IService<AuthPermission> {
      * @return
      */
     void remove(String ids);
+
+    /**
+     * 通过ID列表获取全部权限
+     * @param permissions
+     * @return
+     */
+    List<AuthPermission> getPermissionByIds(List<Long> permissions);
 }
 
 

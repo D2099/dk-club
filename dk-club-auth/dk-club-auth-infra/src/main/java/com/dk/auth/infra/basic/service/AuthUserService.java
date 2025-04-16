@@ -44,6 +44,13 @@ public interface AuthUserService extends IService<AuthUser> {
      * @return
      */
     void remove(String ids);
+
+    /**
+     * 通过用户名获取用户信息
+     * @param username
+     * @return
+     */
+    AuthUser getAuthUserByUsername(String username);
 }
 
 

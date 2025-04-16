@@ -44,6 +44,13 @@ public interface AuthRolePermissionService extends IService<AuthRolePermission> 
      * @return
      */
     void remove(String ids);
+
+    /**
+     * 根据角色ID列表查询角色关联权限ID列表
+     * @param roleIds
+     * @return
+     */
+    List<AuthRolePermission> getAuthRolePermissionByRoleIds(List<Long> roleIds);
 }
 
 

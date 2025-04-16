@@ -1,5 +1,6 @@
 package com.dk.auth.infra.basic.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.dk.auth.infra.basic.entity.AuthUser;
 import com.dk.auth.infra.basic.mapper.AuthUserMapper;
 import com.dk.auth.infra.basic.service.AuthUserService;
@@ -54,6 +55,12 @@ public class AuthUserServiceImpl extends ServiceImpl<AuthUserMapper, AuthUser> i
             }
         }
 
+    }
+
+    @Override
+    public AuthUser getAuthUserByUsername(String username) {
+        return authUserMapper.selectOne(new LambdaQueryWrapper<AuthUser>()
+                .eq(AuthUser::getUserName, username));
     }
 
 }

@@ -1,5 +1,6 @@
 package com.dk.auth.domain.service;
 
+import cn.dev33.satoken.util.SaResult;
 import com.dk.auth.domain.bo.AuthUserBo;
 
 /**
@@ -34,4 +35,19 @@ public interface AuthUserDomainService {
      * @return
      */
     Boolean changeStatus(AuthUserBo authUserBo);
+
+    /**
+     * 通过用户名获取用户信息
+     * @param username
+     * @return
+     */
+    AuthUserBo getUserByUsername(String username);
+
+    /**
+     * 登录
+     * @param username
+     * @param password
+     * @return
+     */
+    SaResult login(String username, String password);
 }

@@ -14,4 +14,6 @@ public interface AuthUserDomainConverter {
     AuthUserDomainConverter INSTANCE = Mappers.getMapper(AuthUserDomainConverter.class);
 
     AuthUser convertAuthUser(AuthUserBo authUserBo);
+
+    AuthUserBo convertAuthUserBo(AuthUser authUser);
 }
